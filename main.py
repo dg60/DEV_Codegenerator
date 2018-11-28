@@ -69,12 +69,12 @@ def code_gen_TEST():
     function_name = generator_bur_st.writeInstances(instances)
     generator_bur_st.writeTypes(function_name, ctrl, sts, prm)
     generator_bur_st.writeInterface(function_name,var_input,var_output,var_in_out)
-    generator_bur_st.writeFB(function_name, var_input, var_output, var_in_out ,'dgrill','V1.0.0')
+    generator_bur_st.writeFB(function_name, var_input, var_output, var_in_out ,'dgrill','1.0')
 
     #SIE
-    generator_sie_st = Generator_SIE.ST('/home/dgrill/Schreibtisch/Projects/00_CodeGenerator/data/',instances)
+    generator_sie_st = Generator_SIE.ST('/home/dgrill/Schreibtisch/TRANSFER_VM',instances)
     generator_sie_st.writeTyp(ctrl, sts ,prm)
-    generator_sie_st.writeFB(var_input,var_output,var_in_out,'dgrill','V1.0.0')
+    generator_sie_st.writeFB(var_input,var_output,var_in_out,'dgrill','1.0')
     generator_sie_st.writeDB(instances)
     generator_sie_st.writeCall(instances,var_input,var_output,var_in_out)
 

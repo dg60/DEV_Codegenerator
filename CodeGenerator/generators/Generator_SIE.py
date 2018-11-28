@@ -49,56 +49,56 @@ class ST(bg.BaseGen):
 
 
                 # Generate ctrl type
-                f.write('TYPE ' + '"' + self.function_name + '_CTRL' + '"' '\n')
-                f.write('VERSION' + ' : ' + '1.0' + '\n')
-                f.write('\t' + 'STRUCT' + '\n')
+                f.write('TYPE ' + '"' + self.function_name + '_CTRL' + '"' '\r\n')
+                f.write('VERSION' + ' : ' + '1.0' + '\r\n')
+                f.write('\t' + 'STRUCT' + '\r\n')
                 for lstitems in lst_ctrl_values:
                     lst_ctrl = lstitems
-                    f.write('\t' + '\t' + lst_ctrl[0] + ' : ' + lst_ctrl[1] + '; ' + '//' + lst_ctrl[2] + '\n')
-                f.write('\t' + 'END_STRUCT;' + '\n')
-                f.write('END_TYPE' + '\n')
-                f.write('\n')
+                    f.write('\t' + '\t' + lst_ctrl[0] + ' : ' + lst_ctrl[1] + '; ' + '//' + lst_ctrl[2] + '\r\n')
+                f.write('\t' + 'END_STRUCT;' + '\r\n')
+                f.write('END_TYPE' + '\r\n')
+                f.write('\r\n')
 
                 # Generate sts type
-                f.write('TYPE ' + '"' + self.function_name + '_STS' + '"' '\n')
-                f.write('VERSION' + ' : ' + '1.0' + '\n')
-                f.write('\t' + 'STRUCT' + '\n')
+                f.write('TYPE ' + '"' + self.function_name + '_STS' + '"' '\r\n')
+                f.write('VERSION' + ' : ' + '1.0' + '\r\n')
+                f.write('\t' + 'STRUCT' + '\r\n')
                 for lstitems in lst_sts_values:
                     lst_sts = lstitems
-                    f.write('\t' + '\t' + lst_sts[0] + ' : ' + lst_sts[1] + '; ' + '//' + lst_sts[2] + '\n')
-                f.write('\t' + 'END_STRUCT;' + '\n')
-                f.write('END_TYPE' + '\n')
-                f.write('\n')
+                    f.write('\t' + '\t' + lst_sts[0] + ' : ' + lst_sts[1] + '; ' + '//' + lst_sts[2] + '\r\n')
+                f.write('\t' + 'END_STRUCT;' + '\r\n')
+                f.write('END_TYPE' + '\r\n')
+                f.write('\r\n')
 
                 # Generate prm type
-                f.write('TYPE ' + '"' + self.function_name + '_STS' + '"' '\n')
-                f.write('VERSION' + ' : ' + '1.0' + '\n')
-                f.write('\t' + 'STRUCT' + '\n')
+                f.write('TYPE ' + '"' + self.function_name + '_PRM' + '"' '\r\n')
+                f.write('VERSION' + ' : ' + '1.0' + '\r\n')
+                f.write('\t' + 'STRUCT' + '\r\n')
                 for lstitems in lst_prm_values:
                     lst_prm = lstitems
-                    f.write('\t' + '\t' + lst_prm[0] + ' : ' + lst_prm[1] + '; ' + '//' + lst_prm[2] + '\n')
-                f.write('\t' + 'END_STRUCT;' + '\n')
-                f.write('END_TYPE' + '\n')
-                f.write('\n')
+                    f.write('\t' + '\t' + lst_prm[0] + ' : ' + lst_prm[1] + '; ' + '//' + lst_prm[2] + '\r\n')
+                f.write('\t' + 'END_STRUCT;' + '\r\n')
+                f.write('END_TYPE' + '\r\n')
+                f.write('\r\n')
 
                 # Generate type
-                f.write('TYPE ' + '"' + 'TYP_' + self.function_name  + '"' '\n')
-                f.write('VERSION' + ' : ' + '1.0' + '\n')
-                f.write('\t' + 'STRUCT' + '\n')
-                f.write('\t' + '\t' +'CTRL' + ' : ' + self.function_name + '_CTRL;' + '\n')
-                f.write('\t' + '\t' +'STS' + ' : ' + self.function_name + '_STS;' + '\n')
-                f.write('\t' + '\t' +'PRM' + ' : ' + self.function_name + '_PRM;' + '\n')
-                f.write('\t' + 'END_STRUCT;' + '\n')
-                f.write('END_TYPE' + '\n')
-                f.write('\n')
+                f.write('TYPE ' + '"' + 'TYP_' + self.function_name  + '"' '\r\n')
+                f.write('VERSION' + ' : ' + '1.0' + '\r\n')
+                f.write('\t' + 'STRUCT' + '\r\n')
+                f.write('\t' + '\t' +'CTRL' + ' : ' + self.function_name + '_CTRL;' + '\r\n')
+                f.write('\t' + '\t' +'STS' + ' : ' + self.function_name + '_STS;' + '\r\n')
+                f.write('\t' + '\t' +'PRM' + ' : ' + self.function_name + '_PRM;' + '\r\n')
+                f.write('\t' + 'END_STRUCT;' + '\r\n')
+                f.write('END_TYPE' + '\r\n')
+                f.write('\r\n')
 
 
         except Exception as e:
             logging.error("Error openinng " + self.destPath + '/' + self.function_name + '.scl', exc_info=True)
 
     #FB
-    def writeFB(self, var_input, var_output, var_in_out, author='user', version='V0.9.0' ):
-        var_options = '{ ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}'
+    def writeFB(self, var_input, var_output, var_in_out, author='user', version='0.9' ):
+        var_options = "{ ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'}"
         now = datetime.now()
         var_input_values = var_input.values
         var_output_values = var_output.values
@@ -119,50 +119,50 @@ class ST(bg.BaseGen):
         try:
             # File.typ
             with open(self.destPath + '/' + self.function_name + '.scl', 'a+') as f:
-                f.write('FUNCTION_BLOCK ' + '"' +  self.function_name + '"' + '\n')
-                f.write('{ S7_Optimized_Access := "TRUE" }' + '\n')
-                f.write('AUTHOR' + ' : ' + author + '\n')
-                f.write('Version' + ' : ' + version + '\n')
+                f.write('FUNCTION_BLOCK ' + '"' +  self.function_name + '"' + '\r\n')
+                f.write("{ S7_Optimized_Access := 'TRUE' }" + '\r\n')
+                f.write('AUTHOR' + ' : ' + author + '\r\n')
+                f.write('Version' + ' : ' + version + '\r\n')
                 # write input interface
-                f.write('\t'+ 'VAR_INPUT' + '\n')
+                f.write('\t'+ 'VAR_INPUT' + '\r\n')
                 for items in lst_var_input_values:
-                    f.write('\t' * 2 + items[0] + ' ' + var_options + ':' + '\t' + items[1]  + '\t' + '// ' + items[2] + '\n')
-                f.write('\t'+ 'END_VAR' + '\n')
+                    f.write('\t' * 2 + items[0] + ' ' + var_options + ':' + '\t' + items[1] + ';'  + '\t' + '// ' + items[2] + '\r\n')
+                f.write('\t'+ 'END_VAR' + '\r\n')
 
                 # write output interface
-                f.write('\t'+ 'VAR_OUTPUT' + '\n')
+                f.write('\t'+ 'VAR_OUTPUT' + '\r\n')
                 for items in lst_var_output_values:
-                    f.write('\t' * 2 + items[0] + ' ' + var_options + ':' + '\t' + items[1] + '\t' + '// ' + items[2] + '\n')
-                f.write('\t'+ 'END_VAR' + '\n')
+                    f.write('\t' * 2 + items[0] + ' ' + var_options + ':' + '\t' + items[1] + ';' + '\t' + '// ' + items[2] + '\r\n')
+                f.write('\t'+ 'END_VAR' + '\r\n')
 
                 # write in_out interface
-                f.write('\t'+ 'VAR_IN_OUT' + '\n')
+                f.write('\t'+ 'VAR_IN_OUT' + '\r\n')
                 for items in lst_var_in_out_values:
-                    f.write('\t' * 2 + items[0] + ' ' + var_options + ':' + '\t' + items[1] + '\t' + '// ' + items[2] + '\n')
-                f.write('\t'+ 'END_VAR' + '\n')
+                    f.write('\t' * 2 + items[0] + ' ' + var_options + ':' + '\t' + items[1] + ';' + '\t' + '// ' + items[2] + '\r\n')
+                f.write('\t'+ 'END_VAR' + '\r\n')
 
-                f.write('BEGIN' + '\n')
+                f.write('BEGIN' + '\r\n')
                 f.write('//***********************************************\n')
-                f.write('// ' + self.function_name  + '\n')
-                f.write('// Author: ' + author + '\n')
-                f.write('// Version: ' + version + '\n')
+                f.write('// ' + self.function_name  + '\r\n')
+                f.write('// Author: ' + author + '\r\n')
+                f.write('// Version: ' + version + '\r\n')
                 f.write('// Date: {0}\n'.format(str(now.strftime('%d.%m.%Y %H:%M'))))
-                f.write('// Description: ' + '\n')
-                f.write('// ' + '\n')
-                f.write('// Rev: ' + '\n')
-                f.write('// ' + '\n')
+                f.write('// Description: ' + '\r\n')
+                f.write('// ' + '\r\n')
+                f.write('// Rev: ' + '\r\n')
+                f.write('// ' + '\r\n')
                 f.write('//***********************************************\n')
 
-                f.write('\n')
-                f.write('// TODO - Insert Code here' + '\n')
-                f.write('\n')
-                f.write('END_FUNCTION_BLOCK' + '\n')
-                f.write('\n')
+                f.write('\r\n')
+                f.write('// TODO - Insert Code here' + '\r\n')
+                f.write('\r\n')
+                f.write('END_FUNCTION_BLOCK' + '\r\n')
+                f.write('\r\n')
         except Exception as e:
             logging.error("Error openinng " + self.destPath + '/' + self.function_name + '.scl',exc_info=True)
 
     #DB
-    def writeDB(self, instances, author='user', version='V0.9.0'):
+    def writeDB(self, instances, author='user', version='0.9'):
         values = instances.values
         keys = instances.keys()
         function_name = values[0]
@@ -176,27 +176,27 @@ class ST(bg.BaseGen):
                     lstVar.append(val)
 
                 f.write('DATA_BLOCK ' + '"' + 'DB_' + self.function_name + '"')
-                f.write('{ S7_Optimized_Access := "TRUE" }' + '\n')
-                f.write('AUTHOR' + ' : ' + author + '\n')
-                f.write('Version' + ' : ' + version + '\n')
-                f.write('VAR' + '\n')
+                f.write("{ S7_Optimized_Access := 'TRUE' }" + '\r\n')
+                f.write('AUTHOR' + ' : ' + author + '\r\n')
+                f.write('Version' + ' : ' + version + '\r\n')
+                f.write('VAR' + '\r\n')
                 for lstitems in lstVar:
                     lst = lstitems
-                    f.write('\t' + lst[0] + ' : ' + 'TYP_' + lst[1] + '; ' + '// ' + lst[2]  + '\n' )
+                    f.write('\t' + '"' + lst[0] + '"' + ' : ' + '"' + 'TYP_' + lst[1] + '"' + '; ' + '// ' + lst[2]  + '\r\n' )
 
-                f.write('END_VAR' + '\n')
-                f.write('BEGIN' + '\n')
-                f.write('\n')
-                f.write('END_DATA_BLOCK' + '\n')
-                f.write('\n')
+                f.write('END_VAR' + '\r\n')
+                f.write('BEGIN' + '\r\n')
+                f.write('\r\n')
+                f.write('END_DATA_BLOCK' + '\r\n')
+                f.write('\r\n')
             
 
         except Exception as e:
             logging.error(self.destPath + '/' + self.function_name + '.scl',exc_info=True)
 
     #callFB
-    def writeCall(self,instances, var_input, var_output, var_in_out, author='user', version='V0.9.0'):
-        var_options = '{ ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}'
+    def writeCall(self,instances, var_input, var_output, var_in_out, author='user', version='0.9'):
+        var_options = "{ ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'}"
         values = instances.values
         keys = instances.keys()
         function_name = values[0]
@@ -230,37 +230,37 @@ class ST(bg.BaseGen):
                 for val in values:
                     lstValues.append(val)
 
-                f.write('FUNCTION_BLOCK ' + '"' +  self.function_name + '"' + '\n')
-                f.write('{ S7_Optimized_Access := "TRUE" }' + '\n')
-                f.write('AUTHOR' + ' : ' + author + '\n')
-                f.write('Version' + ' : ' + version + '\n')
-                f.write('VAR' + '\n')
-                f.write('I_' + self.function_name + ' ' + var_options + ': ' + 'Array[0..' + str(values.shape[0]) + '] of ' + '"' + self.function_name + '";' + '\n' )
-                f.write('END_VAR' + '\n')                
-                f.write('BEGIN' + '\n' * 2)
+                f.write('FUNCTION_BLOCK ' + '"' + 'Call_' + self.function_name + '"' + '\r\n')
+                f.write("{ S7_Optimized_Access := 'TRUE' }" + '\r\n')
+                f.write('AUTHOR' + ' : ' + author + '\r\n')
+                f.write('Version' + ' : ' + version + '\r\n')
+                f.write('VAR' + '\r\n')
+                f.write('I_' + self.function_name + ' ' + var_options + ': ' + 'Array[0..' + str(values.shape[0]) + '] of ' + '"' + self.function_name + '";' + '\r\n' )
+                f.write('END_VAR' + '\r\n')                
+                f.write('BEGIN' + '\r\n' * 2)
                 for cnt_,lstitems in enumerate(lstValues):
                     lst = lstitems
-                    f.write('REGION ' + lst[2] + ' ' + lst[3] + '\n' * 2)
+                    f.write('REGION ' + lst[2] + ' ' + lst[3] + '\r\n' * 2)
 
-                    f.write('#' + 'I_' + self.function_name + '[' +  str(cnt_) + ']' + '(' + '\n')
+                    f.write('#' + 'I_' + self.function_name + '[' +  str(cnt_) + ']' + '(' + '\r\n')
                     for cnt, items in enumerate(lst):
                         lstitems = items
                         #Colum Offset for Parameters
                         if cnt > 3 and cnt < (len(lst) - 1):
                             # detect outputs
                             if keys[cnt] in var_output_sorted:
-                                f.write('\t' + keys[cnt] + ' => ' + str(lstitems) + ',' + '\n')
+                                f.write('\t' + keys[cnt] + ' => ' + str(lstitems) + ',' + '\r\n')
                             else:
-                                f.write('\t' + keys[cnt] + ' := ' + str(lstitems) + ',' + '\n')
+                                f.write('\t' + keys[cnt] + ' := ' + str(lstitems) + ',' + '\r\n')
                         elif cnt >= (len(lst) - 1):
-                            f.write('\t' + keys[cnt] + ' := ' + str(lstitems) + ');' + '\n')
+                            f.write('\t' + keys[cnt] + ' := ' + str(lstitems) + ');' + '\r\n')
 
-                    f.write('\n')
-                    f.write('END_REGION ' + '\n')
-                    f.write('\n')
+                    f.write('\r\n')
+                    f.write('END_REGION ' + '\r\n')
+                    f.write('\r\n')
 
-                f.write('END_FUNCTION_BLOCK' + '\n')
-                f.write('\n')
+                f.write('END_FUNCTION_BLOCK' + '\r\n')
+                f.write('\r\n')
 
         except Exception as e:
             logging.error(self.destPath + '/' + self.function_name + '.scl',exc_info=True)
