@@ -1,3 +1,5 @@
 .idea
 venv
-
+venv1
+build
+dist

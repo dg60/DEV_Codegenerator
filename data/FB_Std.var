@@ -1,0 +1,13 @@
+VAR
+FB1 : FB_Std; (*Förderband 1 *)
+FB2 : FB_Std; (*Förderband 2*)
+FB3 : FB_Std; (*Förderband 3*)
+FB4 : FB_Std; (*Förderband 4 Steigförderband*)
+FB5 : FB_Std; (*Förderband 5*)
+FB6 : FB_Std; (*Förderband 6*)
+FB7 : FB_Std; (*Förderband 7*)
+FB8 : FB_Std; (*Förderband 8*)
+FB9 : FB_Std; (*Förderband 9*)
+FB10 : FB_Std; (*Förderband 10*)
+FB11 : FB_Std; (*Förderband 11*)
+END_VAR

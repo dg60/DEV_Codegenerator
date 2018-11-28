@@ -1,0 +1,232 @@
+TYPE "FB_Std_CTRL"
+VERSION : 1.0
+	STRUCT
+		Manual_Mode_on : BOOL; //Comment
+		Manual_Forward : BOOL; //Comment
+		Manual_Backward : BOOL; //Comment
+		Automatic_Forward : BOOL; //Comment
+		Automatic_Backward : BOOL; //Comment
+	END_STRUCT;
+END_TYPE
+
+TYPE "FB_Std_STS"
+VERSION : 1.0
+	STRUCT
+		O_Forward_on : BOOL; //forward
+		O_Backward_on : BOOL; //backward
+		Error_MSS : BOOL; //error
+		Status : INT; //status
+		Objektname : STRING[50]; //Objektname für Visu
+	END_STRUCT;
+END_TYPE
+
+TYPE "FB_Std_STS"
+VERSION : 1.0
+	STRUCT
+		Dummy : REAL; //Dummy
+	END_STRUCT;
+END_TYPE
+
+TYPE "TYP_FB_Std"
+VERSION : 1.0
+	STRUCT
+		CTRL : FB_Std_CTRL;
+		STS : FB_Std_STS;
+		PRM : FB_Std_PRM;
+	END_STRUCT;
+END_TYPE
+
+FUNCTION_BLOCK "FB_Std"
+{ S7_Optimized_Access := "TRUE" }
+AUTHOR : dgrill
+Version : V1.0.0
+	VAR_INPUT
+		Enable { ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}:	BOOL	// Bausteinfreigabe
+		MSS { ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}:	BOOL	// MSS OK
+	END_VAR
+	VAR_OUTPUT
+		O_Forward { ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}:	BOOL	// Forderband vorwaerts ein
+		O_Backward { ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}:	BOOL	// Forderband rueckwaerts ein
+	END_VAR
+	VAR_IN_OUT
+		ObjectStruct { ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}:	TYP_FB_Std	// Type of FB Std
+	END_VAR
+BEGIN
+//***********************************************
+// FB_Std
+// Author: dgrill
+// Version: V1.0.0
+// Date: 27.11.2018 21:45
+// Description: 
+// 
+// Rev: 
+// 
+//***********************************************
+
+// TODO - Insert Code here
+
+END_FUNCTION_BLOCK
+
+DATA_BLOCK "DB_FB_Std"{ S7_Optimized_Access := "TRUE" }
+AUTHOR : user
+Version : V0.9.0
+VAR
+	FB1 : TYP_FB_Std; // Förderband 1 
+	FB2 : TYP_FB_Std; // Förderband 2
+	FB3 : TYP_FB_Std; // Förderband 3
+	FB4 : TYP_FB_Std; // Förderband 4 Steigförderband
+	FB5 : TYP_FB_Std; // Förderband 5
+	FB6 : TYP_FB_Std; // Förderband 6
+	FB7 : TYP_FB_Std; // Förderband 7
+	FB8 : TYP_FB_Std; // Förderband 8
+	FB9 : TYP_FB_Std; // Förderband 9
+	FB10 : TYP_FB_Std; // Förderband 10
+	FB11 : TYP_FB_Std; // Förderband 11
+END_VAR
+BEGIN
+
+END_DATA_BLOCK
+
+FUNCTION_BLOCK "FB_Std"
+{ S7_Optimized_Access := "TRUE" }
+AUTHOR : user
+Version : V0.9.0
+VAR
+I_FB_Std { ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}: Array[0..11] of "FB_Std";
+END_VAR
+BEGIN
+
+REGION Förderband 1   =HV1+M1
+
+#I_FB_Std[0](
+	Enable := True,
+	MSS := _15A1.DI1,
+	Length := 250.0,
+	O_Forward => A10.0,
+	O_Backward => A11.0,
+	ObjectStruct := FB1);
+
+END_REGION 
+
+REGION Förderband 2  =HV1+M2
+
+#I_FB_Std[1](
+	Enable := True,
+	MSS := _15A1.DI2,
+	Length := 260.0,
+	O_Forward => A10.1,
+	O_Backward => A11.1,
+	ObjectStruct := FB2);
+
+END_REGION 
+
+REGION Förderband 3  =HV1+M3
+
+#I_FB_Std[2](
+	Enable := True,
+	MSS := _15A1.DI3,
+	Length := 270.0,
+	O_Forward => A10.2,
+	O_Backward => A11.2,
+	ObjectStruct := FB3);
+
+END_REGION 
+
+REGION Förderband 4 Steigförderband  =HV1+M4
+
+#I_FB_Std[3](
+	Enable := True,
+	MSS := _15A1.DI4,
+	Length := 270.1,
+	O_Forward => A10.3,
+	O_Backward => A11.3,
+	ObjectStruct := FB4);
+
+END_REGION 
+
+REGION Förderband 5  =HV1+M5
+
+#I_FB_Std[4](
+	Enable := True,
+	MSS := _15A1.DI5,
+	Length := 270.2,
+	O_Forward => A10.4,
+	O_Backward => A11.4,
+	ObjectStruct := FB5);
+
+END_REGION 
+
+REGION Förderband 6  =HV1+M6
+
+#I_FB_Std[5](
+	Enable := True,
+	MSS := _15A1.DI6,
+	Length := 270.3,
+	O_Forward => A10.5,
+	O_Backward => A11.5,
+	ObjectStruct := FB6);
+
+END_REGION 
+
+REGION Förderband 7  =HV1+M7
+
+#I_FB_Std[6](
+	Enable := True,
+	MSS := _15A1.DI7,
+	Length := 270.4,
+	O_Forward => A10.6,
+	O_Backward => A11.6,
+	ObjectStruct := FB7);
+
+END_REGION 
+
+REGION Förderband 8  =HV1+M8
+
+#I_FB_Std[7](
+	Enable := True,
+	MSS := _15A1.DI8,
+	Length := 270.5,
+	O_Forward => A10.7,
+	O_Backward => A11.7,
+	ObjectStruct := FB8);
+
+END_REGION 
+
+REGION Förderband 9  =HV1+M9
+
+#I_FB_Std[8](
+	Enable := True,
+	MSS := _15A1.DI9,
+	Length := 270.6,
+	O_Forward => A10.8,
+	O_Backward => A11.8,
+	ObjectStruct := FB9);
+
+END_REGION 
+
+REGION Förderband 10  =HV1+M10
+
+#I_FB_Std[9](
+	Enable := True,
+	MSS := _15A1.DI10,
+	Length := 270.7,
+	O_Forward => A10.9,
+	O_Backward => A11.9,
+	ObjectStruct := FB10);
+
+END_REGION 
+
+REGION Förderband 11  =HV1+M11
+
+#I_FB_Std[10](
+	Enable := True,
+	MSS := _15A1.DI10,
+	Length := 270.7,
+	O_Forward => A10.10,
+	O_Backward => A11.10,
+	ObjectStruct := FB11);
+
+END_REGION 
+
+END_FUNCTION_BLOCK
+
