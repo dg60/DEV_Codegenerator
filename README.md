@@ -13,8 +13,8 @@ In Development
 ## Supported PLC´s
 
 * B&R Automation Studio 4.x.x  
-  * Strucutered Text (ST)
+  * Structured Text (ST)
   * C++ (CPP) 
 * Siemens TIA_V15
-  * Strucutered Text (ST)
+  * Structured Text (ST)
 _
