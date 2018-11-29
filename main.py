@@ -55,7 +55,7 @@ def code_gen(conf):
 
 def code_gen_TEST():
 
-    parseExcel = Spreadsheet.Structure('/home/dgrill/Schreibtisch/Projects/00_CodeGenerator/data/structure.xlsx')
+    parseExcel = Spreadsheet.Structure('/home/dgrill/Schreibtisch/Projects/00_CodeGenerator/data/Template_structure.xlsx')
     ctrl = parseExcel.readCtrl()
     sts = parseExcel.readSTS()
     prm = parseExcel.readPRM()
@@ -65,7 +65,7 @@ def code_gen_TEST():
     instances = parseExcel.readInstances()
 
     # BuR
-    generator_bur_st = Generator_BuR.ST('/home/dgrill/Schreibtisch/Projects/00_CodeGenerator/data/')
+    generator_bur_st = Generator_BuR.ST('/home/dgrill/Schreibtisch/TRANSFER_VM')
     function_name = generator_bur_st.writeInstances(instances)
     generator_bur_st.writeTypes(function_name, ctrl, sts, prm)
     generator_bur_st.writeInterface(function_name,var_input,var_output,var_in_out)
