@@ -37,7 +37,10 @@ class Structure:
 
         #read values from colum Datatyp
         datatyp = var_input['Datatyp']
+        name = var_input['Name']
+
         self.valid_data.checkDataType(datatyp,CONST['Column_VAR_INPUT'])
+        self.valid_data.checkName(name, CONST['Column_VAR_INPUT'])
 
         return var_input
 
