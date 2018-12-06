@@ -9,6 +9,8 @@ class Syntax():
     # Structured Text (BuR)
     St = {
         'comment': '//',
+        's_block_comment': '(*',
+        'e_block_comment': '*)',
         ':': ' : ',
         ';': '; ',
         ':=': ' := ',
