@@ -62,5 +62,4 @@ class Syntax():
         'e_block_comment': '*/',
     }
 
-print(Syntax.St)
 
