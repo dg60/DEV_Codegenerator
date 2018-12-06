@@ -22,7 +22,7 @@ class Syntax():
         'e_struct': 'END_STRUCT;',
         's_fc': 'FUNCTION',
         'e_fc': 'END_FUNCTION',
-        's_fb': 'FUNCTION_BLOCK',
+        's_fb': 'FUNCTION_BLOCK ',
         'e_fb': 'END_FUNCTION_BLOCK'
     }
     # Scl (SIE)
@@ -42,7 +42,7 @@ class Syntax():
         'e_struct': 'END_STRUCT;',
         's_fc': 'FUNCTION',
         'e_fc': 'END_FUNCTION',
-        's_fb': 'FUNCTION_BLOCK',
+        's_fb': 'FUNCTION_BLOCK ',
         'e_fb': 'END_FUNCTION_BLOCK',
         's_data_block': 'DATA_BLOCK',
         'e_data_block': 'END_DATA_BLOCK',

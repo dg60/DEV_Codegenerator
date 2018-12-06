@@ -116,27 +116,29 @@ class ST(bg.BaseGen):
         try:
             # File.typ
             with open(self.destPath + '/' + self.function_name + '.scl', 'a+') as f:
-                f.write('FUNCTION_BLOCK ' + '"' +  self.function_name + '"' + self.nl)
+
+                f.write(syn.Scl['s_fb'] + '"' +  self.function_name + '"' + self.nl)
                 f.write(self.s7_opt_access + self.nl)
                 f.write('AUTHOR' + syn.Scl[':'] + author + self.nl)
                 f.write('Version' + syn.Scl[':'] + version + self.nl)
+
                 # write input interface
-                f.write('\t'+ 'VAR_INPUT' + self.nl)
+                f.write('\t'+ syn.Scl['var_input'] + self.nl)
                 for items in lst_var_input_values:
-                    f.write('\t' * 2 + items[0] + ' ' + self.var_options + ':' + '\t' + items[1] + ';'  + '\t' + '// ' + items[2] + self.nl)
-                f.write('\t'+ 'END_VAR' + self.nl)
+                    f.write('\t' * 2 + items[0] + ' ' + self.var_options + syn.Scl[':'] + '\t' + items[1] + syn.Scl[';']  + '\t' + syn.Scl['comment'] + items[2] + self.nl)
+                f.write('\t'+ syn.Scl['end_var'] + self.nl)
 
                 # write output interface
-                f.write('\t'+ 'VAR_OUTPUT' + self.nl)
+                f.write('\t'+ syn.Scl['var_output'] + self.nl)
                 for items in lst_var_output_values:
-                    f.write('\t' * 2 + items[0] + ' ' + self.var_options + ':' + '\t' + items[1] + ';' + '\t' + '// ' + items[2] + self.nl)
-                f.write('\t'+ 'END_VAR' + self.nl)
+                    f.write('\t' * 2 + items[0] + ' ' + self.var_options + syn.Scl[':'] + '\t' + items[1] + syn.Scl[';'] + '\t' + syn.Scl['comment'] + items[2] + self.nl)
+                f.write('\t'+ syn.Scl['end_var'] + self.nl)
 
                 # write in_out interface
-                f.write('\t'+ 'VAR_IN_OUT' + self.nl)
+                f.write('\t'+ syn.Scl['var_in_out'] + self.nl)
                 for items in lst_var_in_out_values:
-                    f.write('\t' * 2 + items[0] + ' ' + self.var_options + ':' + '\t' + items[1] + ';' + '\t' + '// ' + items[2] + self.nl)
-                f.write('\t'+ 'END_VAR' + self.nl)
+                    f.write('\t' * 2 + items[0] + ' ' + self.var_options + syn.Scl[':'] + '\t' + items[1] + syn.Scl[';'] + '\t' + syn.Scl['comment'] + items[2] + self.nl)
+                f.write('\t'+ syn.Scl['end_var'] + self.nl)
 
                 f.write('BEGIN' + self.nl)
                 f.write('//***********************************************\n')
@@ -153,8 +155,9 @@ class ST(bg.BaseGen):
                 f.write(self.nl)
                 f.write('// TODO - Insert Code here' + self.nl)
                 f.write(self.nl)
-                f.write('END_FUNCTION_BLOCK' + self.nl)
+                f.write(syn.Scl['e_fb'] + self.nl)
                 f.write(self.nl)
+
         except Exception as e:
             logging.error("Error openinng " + self.destPath + '/' + self.function_name + '.scl',exc_info=True)
 
@@ -182,7 +185,7 @@ class ST(bg.BaseGen):
                     lst = lstitems
                     f.write('\t' + '"' + lst[0] + '"' + syn.Scl[':'] + '"' + 'TYP_' + lst[1] + '"' + syn.Scl[';'] + '// ' + lst[2]  + self.nl )
 
-                f.write('END_VAR' + self.nl)
+                f.write(syn.Scl['end_var'] + self.nl)
                 f.write('BEGIN' + self.nl)
                 f.write(self.nl)
                 f.write('END_DATA_BLOCK' + self.nl)
@@ -234,7 +237,7 @@ class ST(bg.BaseGen):
                 f.write('Version' + syn.Scl[':'] + version + self.nl)
                 f.write('VAR' + self.nl)
                 f.write('I_' + self.function_name + ' ' + var_options + ': ' + 'Array[0..' + str(values.shape[0]) + '] of ' + '"' + self.function_name + '";' + self.nl )
-                f.write('END_VAR' + self.nl)                
+                f.write(syn.Scl['end_var'] + self.nl)
                 f.write('BEGIN' + self.nl * 2)
                 for cnt_,lstitems in enumerate(lstValues):
                     lst = lstitems
