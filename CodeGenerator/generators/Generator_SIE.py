@@ -172,10 +172,11 @@ class ST(bg.BaseGen):
         try:
             # write DB
             with open(self.destPath + '/' + self.function_name + '.scl', 'a+') as f:
+
                 for val in values:
                     lstVar.append(val)
 
-                f.write('DATA_BLOCK ' + '"' + 'DB_' + self.function_name + '"')
+                f.write(syn.Scl['s_data_block'] + '"' + 'DB_' + self.function_name + '"')
                 f.write(self.s7_opt_access + self.nl)
                 f.write('AUTHOR' + syn.Scl[':'] + author + self.nl)
                 f.write('Version' + syn.Scl[':'] + version + self.nl)
@@ -188,7 +189,7 @@ class ST(bg.BaseGen):
                 f.write(syn.Scl['end_var'] + self.nl)
                 f.write('BEGIN' + self.nl)
                 f.write(self.nl)
-                f.write('END_DATA_BLOCK' + self.nl)
+                f.write(syn.Scl['e_data_block'] + self.nl)
                 f.write(self.nl)
             
 
@@ -197,7 +198,6 @@ class ST(bg.BaseGen):
 
     #callFB
     def writeCall(self,instances, var_input, var_output, var_in_out, author='user', version='0.9'):
-        var_options = "{ ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'}"
         values = instances.values
         keys = instances.keys()
         function_name = values[0]
@@ -231,36 +231,37 @@ class ST(bg.BaseGen):
                 for val in values:
                     lstValues.append(val)
 
-                f.write('FUNCTION_BLOCK ' + '"' + 'Call_' + self.function_name + '"' + self.nl)
+                f.write(syn.Scl['s_fb'] + '"' + 'Call_' + self.function_name + '"' + self.nl)
                 f.write(self.s7_opt_access + self.nl)
                 f.write('AUTHOR' + syn.Scl[':'] + author + self.nl)
                 f.write('Version' + syn.Scl[':'] + version + self.nl)
-                f.write('VAR' + self.nl)
-                f.write('I_' + self.function_name + ' ' + var_options + ': ' + 'Array[0..' + str(values.shape[0]) + '] of ' + '"' + self.function_name + '";' + self.nl )
+                f.write(syn.Scl['var'] + self.nl)
+                f.write('I_' + self.function_name + ' ' + self.var_options + ': ' + 'Array[0..' + str(values.shape[0]) + '] of ' + '"' + self.function_name + '";' + self.nl )
                 f.write(syn.Scl['end_var'] + self.nl)
                 f.write('BEGIN' + self.nl * 2)
                 for cnt_,lstitems in enumerate(lstValues):
-                    lst = lstitems
-                    f.write('REGION ' + lst[2] + ' ' + lst[3] + self.nl * 2)
 
+                    lst = lstitems
+                    f.write(syn.Scl['region'] + lst[2] + ' ' + lst[3] + self.nl * 2)
                     f.write('#' + 'I_' + self.function_name + '[' +  str(cnt_) + ']' + '(' + self.nl)
+
                     for cnt, items in enumerate(lst):
                         lstitems = items
                         #Colum Offset for Parameters
                         if cnt > 3 and cnt < (len(lst) - 1):
                             # detect outputs
                             if keys[cnt] in var_output_sorted:
-                                f.write('\t' + keys[cnt] + ' => ' + str(lstitems) + ',' + self.nl)
+                                f.write('\t' + keys[cnt] + syn.Scl['=>'] + str(lstitems) + ',' + self.nl)
                             else:
-                                f.write('\t' + keys[cnt] + ' := ' + str(lstitems) + ',' + self.nl)
+                                f.write('\t' + keys[cnt] + syn.Scl[':='] + str(lstitems) + ',' + self.nl)
                         elif cnt >= (len(lst) - 1):
-                            f.write('\t' + keys[cnt] + ' := ' + str(lstitems) + ');' + self.nl)
+                            f.write('\t' + keys[cnt] + syn.Scl[':='] + str(lstitems) + ');' + self.nl)
 
                     f.write(self.nl)
-                    f.write('END_REGION ' + self.nl)
+                    f.write(syn.Scl['e_region'] + self.nl)
                     f.write(self.nl)
 
-                f.write('END_FUNCTION_BLOCK' + self.nl)
+                f.write(syn.Scl['s_fb'] + self.nl)
                 f.write(self.nl)
 
         except Exception as e:
