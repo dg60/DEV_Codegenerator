@@ -258,7 +258,7 @@ class ST(bg.BaseGen):
 
 class CPP:
 
-    def __init__(self,destPath):
+    def __init__(self,destPath,instances):
         self.destPath = destPath
         pass
 
