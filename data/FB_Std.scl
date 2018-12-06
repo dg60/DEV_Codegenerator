@@ -1,26 +1,18 @@
 TYPE "FB_Std_CTRL"
 VERSION : 1.0
 	STRUCT
-		Manual_Mode_on : BOOL; //Comment
-		Manual_Forward : BOOL; //Comment
-		Manual_Backward : BOOL; //Comment
-		Automatic_Forward : BOOL; //Comment
-		Automatic_Backward : BOOL; //Comment
+		Dummy : Bool; //Dummy
 	END_STRUCT;
 END_TYPE
 
-TYPE "FB_Std_STS"
+TYPE "FB_Std_CTRL"
 VERSION : 1.0
 	STRUCT
-		O_Forward_on : BOOL; //forward
-		O_Backward_on : BOOL; //backward
-		Error_MSS : BOOL; //error
-		Status : INT; //status
-		Objektname : STRING[50]; //Objektname für Visu
+		Dummy : Bool; //Dummy
 	END_STRUCT;
 END_TYPE
 
-TYPE "FB_Std_STS"
+TYPE "FB_Std_CTRL"
 VERSION : 1.0
 	STRUCT
 		Dummy : REAL; //Dummy
@@ -39,24 +31,30 @@ END_TYPE
 FUNCTION_BLOCK "FB_Std"
 { S7_Optimized_Access := "TRUE" }
 AUTHOR : dgrill
-Version : V1.0.0
+Version : 1.0
 	VAR_INPUT
-		Enable { ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}:	BOOL	// Bausteinfreigabe
-		MSS { ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}:	BOOL	// MSS OK
+		IN_Prm_0 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Input Parameter 1
+		IN_Prm_1 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Input Parameter 2
+		IN_Prm_2 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Input Parameter 3
+		IN_Prm_3 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Input Parameter 4
+		IN_Prm_4 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Input Parameter 5
 	END_VAR
 	VAR_OUTPUT
-		O_Forward { ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}:	BOOL	// Forderband vorwaerts ein
-		O_Backward { ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}:	BOOL	// Forderband rueckwaerts ein
+		OUT_Prm_0 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Output Parameter 1
+		OUT_Prm_1 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Output Parameter 2
+		OUT_Prm_2 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Output Parameter 3
+		OUT_Prm_3 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Output Parameter 4
+		OUT_Prm_4 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Output Parameter 5
 	END_VAR
 	VAR_IN_OUT
-		ObjectStruct { ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}:	TYP_FB_Std	// Type of FB Std
+		Object_struct { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	TYP_FB_Std; 	//Objectstrucuture
 	END_VAR
 BEGIN
 //***********************************************
 // FB_Std
 // Author: dgrill
-// Version: V1.0.0
-// Date: 28.11.2018 21:33
+// Version: 1.0
+// Date: 06.12.2018 23:06
 // Description: 
 // 
 // Rev: 
@@ -69,164 +67,417 @@ END_FUNCTION_BLOCK
 
 DATA_BLOCK "DB_FB_Std"{ S7_Optimized_Access := "TRUE" }
 AUTHOR : user
-Version : V0.9.0
+Version : 0.9
 VAR
-	FB1 : TYP_FB_Std; // Förderband 1 
-	FB2 : TYP_FB_Std; // Förderband 2
-	FB3 : TYP_FB_Std; // Förderband 3
-	FB4 : TYP_FB_Std; // Förderband 4 Steigförderband
-	FB5 : TYP_FB_Std; // Förderband 5
-	FB6 : TYP_FB_Std; // Förderband 6
-	FB7 : TYP_FB_Std; // Förderband 7
-	FB8 : TYP_FB_Std; // Förderband 8
-	FB9 : TYP_FB_Std; // Förderband 9
-	FB10 : TYP_FB_Std; // Förderband 10
-	FB11 : TYP_FB_Std; // Förderband 11
+	"Object1" : "TYP_FB_Std"; // Standard FB
+	"Object2" : "TYP_FB_Std"; // Standard FB
+	"Object3" : "TYP_FB_Std"; // Standard FB
+	"Object4" : "TYP_FB_Std"; // Standard FB
+	"Object5" : "TYP_FB_Std"; // Standard FB
+	"Object6" : "TYP_FB_Std"; // Standard FB
+	"Object7" : "TYP_FB_Std"; // Standard FB
+	"Object8" : "TYP_FB_Std"; // Standard FB
+	"Object9" : "TYP_FB_Std"; // Standard FB
+	"Object10" : "TYP_FB_Std"; // Standard FB
+	"Object11" : "TYP_FB_Std"; // Standard FB
+	"Object12" : "TYP_FB_Std"; // Standard FB
+	"Object13" : "TYP_FB_Std"; // Standard FB
+	"Object14" : "TYP_FB_Std"; // Standard FB
+	"Object15" : "TYP_FB_Std"; // Standard FB
+	"Object16" : "TYP_FB_Std"; // Standard FB
+	"Object17" : "TYP_FB_Std"; // Standard FB
+	"Object18" : "TYP_FB_Std"; // Standard FB
+	"Object19" : "TYP_FB_Std"; // Standard FB
+	"Object20" : "TYP_FB_Std"; // Standard FB
+	"Object21" : "TYP_FB_Std"; // Standard FB
+	"Object22" : "TYP_FB_Std"; // Standard FB
 END_VAR
 BEGIN
 
 END_DATA_BLOCK
 
-FUNCTION_BLOCK "FB_Std"
+FUNCTION_BLOCK "Call_FB_Std"
 { S7_Optimized_Access := "TRUE" }
 AUTHOR : user
-Version : V0.9.0
+Version : 0.9
 VAR
-I_FB_Std { ExternalAccessible := "False"; ExternalVisible := "False"; ExternalWritable := "False"}: Array[0..11] of "FB_Std";
+I_FB_Std { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'}: Array[0..22] of "FB_Std";
 END_VAR
 BEGIN
 
-REGION Förderband 1   =HV1+M1
+REGIONStandard FB FB1
 
 #I_FB_Std[0](
-	Enable := True,
-	MSS := _15A1.DI1,
-	Length := 250.0,
-	O_Forward => A10.0,
-	O_Backward => A11.0,
-	ObjectStruct := FB1);
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object1);
 
-END_REGION 
+END_REGION
 
-REGION Förderband 2  =HV1+M2
+REGIONStandard FB FB2
 
 #I_FB_Std[1](
-	Enable := True,
-	MSS := _15A1.DI2,
-	Length := 260.0,
-	O_Forward => A10.1,
-	O_Backward => A11.1,
-	ObjectStruct := FB2);
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object2);
 
-END_REGION 
+END_REGION
 
-REGION Förderband 3  =HV1+M3
+REGIONStandard FB FB3
 
 #I_FB_Std[2](
-	Enable := True,
-	MSS := _15A1.DI3,
-	Length := 270.0,
-	O_Forward => A10.2,
-	O_Backward => A11.2,
-	ObjectStruct := FB3);
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object3);
 
-END_REGION 
+END_REGION
 
-REGION Förderband 4 Steigförderband  =HV1+M4
+REGIONStandard FB FB4
 
 #I_FB_Std[3](
-	Enable := True,
-	MSS := _15A1.DI4,
-	Length := 270.1,
-	O_Forward => A10.3,
-	O_Backward => A11.3,
-	ObjectStruct := FB4);
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object4);
 
-END_REGION 
+END_REGION
 
-REGION Förderband 5  =HV1+M5
+REGIONStandard FB FB5
 
 #I_FB_Std[4](
-	Enable := True,
-	MSS := _15A1.DI5,
-	Length := 270.2,
-	O_Forward => A10.4,
-	O_Backward => A11.4,
-	ObjectStruct := FB5);
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object5);
 
-END_REGION 
+END_REGION
 
-REGION Förderband 6  =HV1+M6
+REGIONStandard FB FB6
 
 #I_FB_Std[5](
-	Enable := True,
-	MSS := _15A1.DI6,
-	Length := 270.3,
-	O_Forward => A10.5,
-	O_Backward => A11.5,
-	ObjectStruct := FB6);
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object6);
 
-END_REGION 
+END_REGION
 
-REGION Förderband 7  =HV1+M7
+REGIONStandard FB FB7
 
 #I_FB_Std[6](
-	Enable := True,
-	MSS := _15A1.DI7,
-	Length := 270.4,
-	O_Forward => A10.6,
-	O_Backward => A11.6,
-	ObjectStruct := FB7);
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object7);
 
-END_REGION 
+END_REGION
 
-REGION Förderband 8  =HV1+M8
+REGIONStandard FB FB8
 
 #I_FB_Std[7](
-	Enable := True,
-	MSS := _15A1.DI8,
-	Length := 270.5,
-	O_Forward => A10.7,
-	O_Backward => A11.7,
-	ObjectStruct := FB8);
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object8);
 
-END_REGION 
+END_REGION
 
-REGION Förderband 9  =HV1+M9
+REGIONStandard FB FB9
 
 #I_FB_Std[8](
-	Enable := True,
-	MSS := _15A1.DI9,
-	Length := 270.6,
-	O_Forward => A10.8,
-	O_Backward => A11.8,
-	ObjectStruct := FB9);
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object9);
 
-END_REGION 
+END_REGION
 
-REGION Förderband 10  =HV1+M10
+REGIONStandard FB FB10
 
 #I_FB_Std[9](
-	Enable := True,
-	MSS := _15A1.DI10,
-	Length := 270.7,
-	O_Forward => A10.9,
-	O_Backward => A11.9,
-	ObjectStruct := FB10);
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object10);
 
-END_REGION 
+END_REGION
 
-REGION Förderband 11  =HV1+M11
+REGIONStandard FB FB11
 
 #I_FB_Std[10](
-	Enable := True,
-	MSS := _15A1.DI10,
-	Length := 270.7,
-	O_Forward => A10.10,
-	O_Backward => A11.10,
-	ObjectStruct := FB11);
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object11);
 
-END_REGION 
+END_REGION
 
-END_FUNCTION_BLOCK
+REGIONStandard FB FB12
+
+#I_FB_Std[11](
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object12);
+
+END_REGION
+
+REGIONStandard FB FB13
+
+#I_FB_Std[12](
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object13);
+
+END_REGION
+
+REGIONStandard FB FB14
+
+#I_FB_Std[13](
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object14);
+
+END_REGION
+
+REGIONStandard FB FB15
+
+#I_FB_Std[14](
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object15);
+
+END_REGION
+
+REGIONStandard FB FB16
+
+#I_FB_Std[15](
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object16);
+
+END_REGION
+
+REGIONStandard FB FB17
+
+#I_FB_Std[16](
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object17);
+
+END_REGION
+
+REGIONStandard FB FB18
+
+#I_FB_Std[17](
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object18);
+
+END_REGION
+
+REGIONStandard FB FB19
+
+#I_FB_Std[18](
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object19);
+
+END_REGION
+
+REGIONStandard FB FB20
+
+#I_FB_Std[19](
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object20);
+
+END_REGION
+
+REGIONStandard FB FB21
+
+#I_FB_Std[20](
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object21);
+
+END_REGION
+
+REGIONStandard FB FB22
+
+#I_FB_Std[21](
+	IN_Prm_0 := "Prm0",
+	IN_Prm_1 := "Prm1",
+	IN_Prm_2 := "Prm2",
+	IN_Prm_3 := "Prm3",
+	IN_Prm_4 := "Prm4",
+	OUT_Prm_0 => "Prm5",
+	OUT_Prm_1 => "Prm6",
+	OUT_Prm_2 => "Prm7",
+	OUT_Prm_3 => "Prm8",
+	OUT_Prm_4 => "Prm9",
+	Object_struct := "DB_FB_Std".Object22);
+
+END_REGION
+
+FUNCTION_BLOCK 
 

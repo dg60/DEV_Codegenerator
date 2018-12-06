@@ -67,14 +67,14 @@ def code_gen_TEST():
     instances = parseExcel.readInstances()
 
     # BuR
-    generator_bur_st = Generator_BuR.ST('/home/dgrill/Schreibtisch/TRANSFER_VM',instances)
+    generator_bur_st = Generator_BuR.ST('/home/dgrill/Schreibtisch/Projects/00_CodeGenerator/data/',instances)
     generator_bur_st.writeInstances(instances,var_input,var_output,var_in_out)
     generator_bur_st.writeTypes(ctrl, sts, prm)
     generator_bur_st.writeInterface(var_input,var_output,var_in_out)
     generator_bur_st.writeFB( var_input, var_output, var_in_out ,'dgrill','1.0')
 
     #SIE
-    generator_sie_st = Generator_SIE.ST('/home/dgrill/Schreibtisch/TRANSFER_VM',instances)
+    generator_sie_st = Generator_SIE.ST('/home/dgrill/Schreibtisch/Projects/00_CodeGenerator/data/',instances)
     generator_sie_st.writeTyp(ctrl, sts ,prm)
     generator_sie_st.writeFB(var_input,var_output,var_in_out,'dgrill','1.0')
     generator_sie_st.writeDB(instances)
