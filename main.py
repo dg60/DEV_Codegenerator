@@ -33,10 +33,11 @@ def code_gen(conf):
         generator_bur_cpp = Generator_BuR.CPP(conf.output_directory,instances)
 
         if conf.target_lang == 'ST':
-            function_name = generator_bur_st.writeInstances(instances)
+            generator_bur_st.writeInstances(instances,var_input,var_output,var_in_out)
             generator_bur_st.writeTypes(ctrl, sts, prm)
             generator_bur_st.writeInterface(var_input,var_output,var_in_out)
             generator_bur_st.writeFB(var_input, var_output, var_in_out ,'dgrill','V1.0.0')
+
         elif  conf.target_lang == 'CPP':
             generator_bur_cpp.development()
 
@@ -50,6 +51,7 @@ def code_gen(conf):
             generator_sie_st.writeFB(var_input,var_output,var_in_out,'dgrill','V1.0.0')
             generator_sie_st.writeDB(instances)
             generator_sie_st.writeCall(instances,var_input,var_output,var_in_out)
+
         elif  conf.target_lang == 'CPP':
             generator_sie_cpp.development()
 
@@ -66,7 +68,7 @@ def code_gen_TEST():
 
     # BuR
     generator_bur_st = Generator_BuR.ST('/home/dgrill/Schreibtisch/TRANSFER_VM',instances)
-    generator_bur_st.writeInstances(instances)
+    generator_bur_st.writeInstances(instances,var_input,var_output,var_in_out)
     generator_bur_st.writeTypes(ctrl, sts, prm)
     generator_bur_st.writeInterface(var_input,var_output,var_in_out)
     generator_bur_st.writeFB( var_input, var_output, var_in_out ,'dgrill','1.0')

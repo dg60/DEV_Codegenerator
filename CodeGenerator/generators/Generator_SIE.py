@@ -37,22 +37,9 @@ class ST(bg.BaseGen):
 
     #typ(UDT)
     def writeTyp(self, ctrl, sts, prm):
-        ctrl_values = ctrl.values
-        sts_values = sts.values
-        prm_values = prm.values
-        lst_ctrl_values = []
-        lst_sts_values = []
-        lst_prm_values = []
-
-        for val in ctrl_values:
-            lst_ctrl_values.append(val)
-
-        for val in sts_values:
-            lst_sts_values.append(val)
-
-        for val in prm_values:
-            lst_prm_values.append(val)
-
+        lst_ctrl_values = ST._readValues(self,ctrl)
+        lst_sts_values = ST._readValues(self,sts)
+        lst_prm_values = ST._readValues(self,prm)
 
         try:
             # File.typ
@@ -97,21 +84,10 @@ class ST(bg.BaseGen):
     #FB
     def writeFB(self, var_input, var_output, var_in_out, author='user', version='0.9' ):
         now = datetime.now()
-        var_input_values = var_input.values
-        var_output_values = var_output.values
-        var_in_out_values = var_in_out.values
-        lst_var_input_values = []
-        lst_var_output_values = []
-        lst_var_in_out_values = []
+        lst_var_input_values = ST._readValues(self,var_input)
+        lst_var_output_values = ST._readValues(self,var_output)
+        lst_var_in_out_values = ST._readValues(self,var_in_out)
 
-        for values in var_input_values:
-            lst_var_input_values.append(values)
-
-        for values in var_output_values:
-            lst_var_output_values.append(values)
-
-        for values in var_in_out_values:
-            lst_var_in_out_values.append(values)
 
         try:
             # File.typ
@@ -164,9 +140,6 @@ class ST(bg.BaseGen):
     #DB
     def writeDB(self, instances, author='user', version='0.9'):
         values = instances.values
-        keys = instances.keys()
-        function_name = values[0]
-        lstValues = []
         lstVar = []
 
         try:
@@ -200,30 +173,15 @@ class ST(bg.BaseGen):
     def writeCall(self,instances, var_input, var_output, var_in_out, author='user', version='0.9'):
         values = instances.values
         keys = instances.keys()
-        function_name = values[0]
         lstValues = []
-        lstVar = []
-        var_input_values = var_input.values
-        var_output_values = var_output.values
-        var_in_out_values = var_in_out.values
-        lst_var_input_values = []
-        lst_var_output_values = []
-        lst_var_in_out_values = []
+        lst_var_input_values = ST._readValues(self,var_input)
+        lst_var_output_values = ST._readValues(self,var_output)
+        lst_var_in_out_values = ST._readValues(self,var_in_out)
         var_output_sorted = []
 
-        for valuesI in var_input_values:
-            lst_var_input_values.append(valuesI)
-
-        for valuesO in var_output_values:
-            lst_var_output_values.append(valuesO)
-
         #get var_output datapoint by name
-        for cnt_var_output, valuesOO in enumerate(lst_var_output_values):
+        for cnt_var_output in range(len(lst_var_output_values)):
             var_output_sorted.append (lst_var_output_values[cnt_var_output][0])
-
-
-        for valuesIO in var_in_out_values:
-            lst_var_in_out_values.append(valuesIO)
 
         try:
             #File.st
@@ -254,6 +212,7 @@ class ST(bg.BaseGen):
                                 f.write('\t' + keys[cnt] + syn.Scl['=>'] + str(lstitems) + ',' + self.nl)
                             else:
                                 f.write('\t' + keys[cnt] + syn.Scl[':='] + str(lstitems) + ',' + self.nl)
+
                         elif cnt >= (len(lst) - 1):
                             f.write('\t' + keys[cnt] + syn.Scl[':='] + str(lstitems) + ');' + self.nl)
 

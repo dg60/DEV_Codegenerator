@@ -7,13 +7,14 @@ Date: 26 Nov 2018
 
 class BaseGen(object):
 
+    # read values from the pandas dataframe
+    def _readValues(self,dataframe_):
+        values = dataframe_.values
+        lst_values = []
 
-    def _getInputs(self):
-        print('HELLO from base')
-        pass
+        for value in values:
+            lst_values.append(value)
 
-    def _getOutputs(self):
-        pass
+        return lst_values
 
-    def _getInOuts(self):
-        pass
+

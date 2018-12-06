@@ -41,11 +41,20 @@ class ST(bg.BaseGen):
 
 
     #Create the source file for the function calls
-    def writeInstances(self,instances):
+    def writeInstances(self,instances, var_input, var_output, var_in_out,):
         values = instances.values
         keys = instances.keys()
+        lst_var_input_values = ST._readValues(self,var_input)
+        lst_var_output_values = ST._readValues(self,var_output)
+        lst_var_in_out_values = ST._readValues(self,var_in_out)
         lstValues = []
         lstVar = []
+        var_output_sorted = []
+        tmp_lst_var_output =[]
+
+        #get var_output datapoint by name
+        for cnt_var_output in range(len(lst_var_output_values)):
+            var_output_sorted.append (lst_var_output_values[cnt_var_output][0])
 
         #Create Header
         ST._writeHeader(self)
@@ -61,6 +70,7 @@ class ST(bg.BaseGen):
                     f.write('//***********************************************\n')
                     f.write('// ' + lst[2] + ' ' + lst[3] + self.nl)
                     f.write('//***********************************************\n')
+                    f.write(self.nl)
 
                     f.write(lst[0] + '(' + self.nl)
 
@@ -69,9 +79,20 @@ class ST(bg.BaseGen):
 
                         # Colum Offset for Parameters
                         if cnt > 3 and cnt < (len(lst) - 1):
-                            f.write('\t' + keys[cnt] + syn.St[':='] + str(lstitems) + ',' + self.nl)
+                            #detect outputs
+                            if keys[cnt] in var_output_sorted:
+                                tmp_lst_var_output.append('\t' + str(lstitems) + syn.St[':='] + keys[cnt] + syn.St[';'] + self.nl)
+                            else:
+                                f.write('\t' + keys[cnt] + syn.St[':='] + str(lstitems) + ',' + self.nl)
+
                         elif cnt >= (len(lst)- 1):
                             f.write('\t' + keys[cnt] + syn.St[':='] + str(lstitems) + ');' + self.nl)
+                            f.write(self.nl)
+
+                    # write output interface
+                    for line_out in tmp_lst_var_output:
+                        f.write(line_out)
+                    tmp_lst_var_output = []
 
                     f.write(self.nl)
 
@@ -94,21 +115,9 @@ class ST(bg.BaseGen):
 
     #types.typ
     def writeTypes(self, ctrl, sts, prm):
-        ctrl_values = ctrl.values
-        sts_values = sts.values
-        prm_values = prm.values
-        lst_ctrl_values = []
-        lst_sts_values = []
-        lst_prm_values = []
-
-        for val in ctrl_values:
-            lst_ctrl_values.append(val)
-
-        for val in sts_values:
-            lst_sts_values.append(val)
-
-        for val in prm_values:
-            lst_prm_values.append(val)
+        lst_ctrl_values = ST._readValues(self,ctrl)
+        lst_sts_values = ST._readValues(self,sts)
+        lst_prm_values = ST._readValues(self,prm)
 
         try:
             # File.typ
@@ -160,21 +169,9 @@ class ST(bg.BaseGen):
     #fb_lib.st
     def writeFB(self, var_input, var_output, var_in_out, author='user', version='V0.9.0' ):
         now = datetime.now()
-        var_input_values = var_input.values
-        var_output_values = var_output.values
-        var_in_out_values = var_in_out.values
-        lst_var_input_values = []
-        lst_var_output_values = []
-        lst_var_in_out_values = []
-
-        for values in var_input_values:
-            lst_var_input_values.append(values)
-
-        for values in var_output_values:
-            lst_var_output_values.append(values)
-
-        for values in var_in_out_values:
-            lst_var_in_out_values.append(values)
+        lst_var_input_values = ST._readValues(self,var_input)
+        lst_var_output_values = ST._readValues(self,var_output)
+        lst_var_in_out_values = ST._readValues(self,var_in_out)
 
         try:
             # File.typ
@@ -213,8 +210,6 @@ class ST(bg.BaseGen):
 
                 f.write(syn.St['s_fb'] + ' ' + self.function_name + self.nl)
 
-
-
                 f.write(self.nl)
                 f.write('// TODO - Insert Code here' + self.nl)
                 f.write(self.nl)
@@ -225,21 +220,9 @@ class ST(bg.BaseGen):
 
     #lib.fun
     def writeInterface(self, var_input, var_output, var_in_out):
-        var_input_values = var_input.values
-        var_output_values = var_output.values
-        var_in_out_values = var_in_out.values
-        lst_var_input_values = []
-        lst_var_output_values = []
-        lst_var_in_out_values = []
-
-        for val in var_input_values:
-            lst_var_input_values.append(val)
-
-        for val in var_output_values:
-            lst_var_output_values.append(val)
-
-        for val in var_in_out_values:
-            lst_var_in_out_values.append(val)
+        lst_var_input_values = ST._readValues(self,var_input)
+        lst_var_output_values = ST._readValues(self,var_output)
+        lst_var_in_out_values = ST._readValues(self,var_in_out)
 
         try:
             # File.typ
@@ -249,7 +232,7 @@ class ST(bg.BaseGen):
 
                 # Generate var_input
                 f.write(syn.St['var_input'] + self.nl)
-                for lstitems in var_input_values:
+                for lstitems in lst_var_input_values:
                     lst_var_input = lstitems
                     f.write(lst_var_input[0] + ' : ' + lst_var_input[1] + '; ' + syn.St['s_block_comment'] + lst_var_input[2] + syn.St['e_block_comment'] + self.nl)
                 f.write(syn.St['end_var'] + self.nl)
