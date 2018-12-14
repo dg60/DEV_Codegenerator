@@ -106,7 +106,7 @@ def parse_args():
         with open(args_file) as data_file:
             stored_args = json.load(data_file)
 
-    parser = GooeyParser(description= conf['Version'] + '\n' + 'www.dgrill.at')
+    parser = GooeyParser(description= conf['Version'] + '\n' + conf['URL'])
 
     parser.add_argument('data_directory',
                         action='store',
