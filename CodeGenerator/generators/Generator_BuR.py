@@ -17,7 +17,7 @@ class ST(bg.BaseGen):
         #prepare function name
         values = instances.values
         temp_func_name = values[0]
-        self.nl = '\n'
+        self.nl = '\r\n'
         self.destPath = destPath
         self.function_name = temp_func_name[1]
         self.version = 'V1.0'
@@ -27,13 +27,14 @@ class ST(bg.BaseGen):
 
         try:
             with open(self.destPath + '/' + self.function_name + '.st','wt') as f:
-                f.write('//***********************************************\n')
+                f.write('//***********************************************' + self.nl)
                 f.write('// Codegenerator BuR ' + conf['Version'] + self.nl)
                 f.write('// by ' + conf['Author'] + self.nl)
                 f.write('// ' + conf['URL'] + self.nl)
                 f.write('// ' + conf['Email'] + self.nl)
-                f.write('// Date of generation: {0}\n'.format(str(now.strftime('%d.%m.%Y %H:%M'))))
-                f.write('//***********************************************\n')
+                f.write('// Date of generation: {0}'.format(str(now.strftime('%d.%m.%Y %H:%M'))))
+                f.write(self.nl)
+                f.write('//***********************************************' + self.nl)
                 f.write(self.nl)
 
         except Exception as e:
@@ -67,9 +68,9 @@ class ST(bg.BaseGen):
 
                 for lstitems in lstValues:
                     lst = lstitems
-                    f.write('//***********************************************\n')
+                    f.write('//***********************************************' + self.nl)
                     f.write('// ' + lst[2] + ' ' + lst[3] + self.nl)
-                    f.write('//***********************************************\n')
+                    f.write('//***********************************************' + self.nl)
                     f.write(self.nl)
 
                     f.write(lst[0] + '(' + self.nl)
@@ -81,7 +82,7 @@ class ST(bg.BaseGen):
                         if cnt > 3 and cnt < (len(lst) - 1):
                             #detect outputs
                             if keys[cnt] in var_output_sorted:
-                                tmp_lst_var_output.append('\t' + str(lstitems) + syn.St[':='] + keys[cnt] + syn.St[';'] + self.nl)
+                                tmp_lst_var_output.append('\t' + str(lstitems) + syn.St[':='] + lst[0] + '.' + keys[cnt] + syn.St[';'] + self.nl)
                             else:
                                 f.write('\t' + keys[cnt] + syn.St[':='] + str(lstitems) + ',' + self.nl)
 
@@ -176,11 +177,12 @@ class ST(bg.BaseGen):
         try:
             # File.typ
             with open(self.destPath + '/' + self.function_name + '_lib' + '.st', 'wt') as f:
-                f.write('//***********************************************\n')
+                f.write('//***********************************************' + self.nl)
                 f.write('// ' + self.function_name  + self.nl)
                 f.write('// Author: ' + author + self.nl)
                 f.write('// Version: ' + version + self.nl)
-                f.write('// Date: {0}\n'.format(str(now.strftime('%d.%m.%Y %H:%M'))))
+                f.write('// Date: {0}'.format(str(now.strftime('%d.%m.%Y %H:%M'))))
+                f.write(self.nl)
                 f.write('// Description: ' + self.nl)
                 f.write('// ' + self.nl)
                 f.write('// Interface: ' + self.nl)
@@ -205,7 +207,7 @@ class ST(bg.BaseGen):
                 f.write('// ' + self.nl)
                 f.write('// Rev: ' + self.nl)
                 f.write('// ' + self.nl)
-                f.write('//***********************************************\n')
+                f.write('//***********************************************' + self.nl)
                 f.write(self.nl)
 
                 f.write(syn.St['s_fb'] + ' ' + self.function_name + self.nl)
