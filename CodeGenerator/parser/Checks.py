@@ -45,7 +45,7 @@ class ValidateData():
                     valid = True
 
                 if (cnt == (len(ValidateData.plcTypes)) - 1) and not valid:
-                    logging.warning('Unknown datatype: ' + types + ' in colum ' + modulname + ' Line ' + str(line + 2))
+                    logging.warning('Unknown datatype: ' + types + ' in worksheet ' + modulname + ' Line ' + str(line + 2))
 
                 # reset valid flag after iteration
                 if (cnt == (len(ValidateData.plcTypes)) - 1):
@@ -56,10 +56,10 @@ class ValidateData():
         for cnt, names in enumerate(name):
 
             if any(i in names for i in ValidateData.invalidCharacters):
-                logging.warning('Not allowed character ' + str(ValidateData.invalidCharacters) +  ' in colum ' + modulname + ' Line ' + str((cnt + 2)))
+                logging.warning('Not allowed character ' + str(ValidateData.invalidCharacters) +  ' in worksheet ' + modulname + ' Line ' + str((cnt + 2)))
 
             if len(names) > self.max_length_name:
-                logging.warning('Name was too long in colum ' + modulname + ' Line ' + str((cnt + 2)) +
+                logging.warning('Name was too long in worksheet ' + modulname + ' Line ' + str((cnt + 2)) +
                                 ' | ' + names + ' was ' + str(len(names)) + ' characters long ' + '| Allowed max: ' + str(self.max_length_name))
 
 

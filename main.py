@@ -7,7 +7,7 @@ import json
 from gooey import Gooey, GooeyParser
 import logging
 
-logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S',level=logging.INFO)
+logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S',level=logging.WARNING)
 
 def code_gen(conf):
 
@@ -83,7 +83,8 @@ def code_gen_TEST():
 @Gooey(advanced=True,
     show_config=True,
     default_size=(800,680),
-    program_name="Code Generator")
+    program_name="Code Generator",
+       image_dir= os.path.dirname(os.path.realpath("__file__")) + '/CodeGenerator/images')
 def parse_args():
     """ Use GooeyParser to build up the arguments we will use in our script
     Save the arguments in a default json file so that we can retrieve them
@@ -131,12 +132,6 @@ def parse_args():
                         widget='Dropdown',
                         default=stored_args.get('target_ide'),
                         help="Choose the target IDE Version")
-
-    parser.add_argument('create_type',
-                        action='store_true',
-                        default=stored_args.get('target_ide'),
-                        help="TYPES")
-
 
     args = parser.parse_args()
     # Store the values of the arguments so we have them next time we run
