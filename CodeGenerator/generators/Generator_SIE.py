@@ -20,7 +20,7 @@ class ST(bg.BaseGen):
         self.nl = '\r\n'
         self.destPath = destPath
         self.function_name = temp_func_name[1]
-        self.s7_opt_access = '{ S7_Optimized_Access := "TRUE" }'
+        self.s7_opt_access = "{ S7_Optimized_Access := 'TRUE' }"
         self.var_options = "{ ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'}"
 
     def _writeTypStart(self,f):
@@ -36,16 +36,15 @@ class ST(bg.BaseGen):
     def _writeHeader(self,f):
         now = datetime.now()
 
-        f.write('//***********************************************\n')
+        f.write('//***********************************************' + self.nl)
         f.write('// Codegenerator Siemens ' + conf['Version'] + self.nl)
         f.write('// by ' + conf['Author'] + self.nl)
         f.write('// ' + conf['URL'] + self.nl)
         f.write('// ' + conf['Email'] + self.nl)
-        f.write('// Date of generation: {0}\n'.format(str(now.strftime('%d.%m.%Y %H:%M'))))
-        f.write('//***********************************************\n')
+        f.write('// Date of generation: {0}'.format(str(now.strftime('%d.%m.%Y %H:%M'))))
         f.write(self.nl)
-
-
+        f.write('//***********************************************' + self.nl)
+        f.write(self.nl)
 
     #typ(UDT)
     def writeTyp(self, ctrl, sts, prm):
@@ -235,7 +234,7 @@ class ST(bg.BaseGen):
                     f.write(syn.Scl['e_region'] + self.nl)
                     f.write(self.nl)
 
-                f.write(syn.Scl['s_fb'] + self.nl)
+                f.write(syn.Scl['e_fb'] + self.nl)
                 f.write(self.nl)
 
         except Exception as e:

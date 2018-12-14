@@ -50,7 +50,7 @@ class Syntax():
         'e_fb': 'END_FUNCTION_BLOCK',
         's_data_block': 'DATA_BLOCK ',
         'e_data_block': 'END_DATA_BLOCK',
-        'region': 'REGION',
+        'region': 'REGION ',
         'e_region': 'END_REGION',
     }
     # C++ (BuR)
