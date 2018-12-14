@@ -39,7 +39,7 @@ def code_gen(app_conf):
             generator_bur_st.writeInstances(instances,var_input,var_output,var_in_out)
             generator_bur_st.writeTypes(ctrl, sts, prm)
             generator_bur_st.writeInterface(var_input,var_output,var_in_out)
-            generator_bur_st.writeFB(var_input, var_output, var_in_out ,'dgrill')
+            generator_bur_st.writeFB(var_input, var_output, var_in_out ,app_conf.author)
 
         elif  app_conf.target_lang == 'CPP':
             generator_bur_cpp.development()
@@ -51,16 +51,17 @@ def code_gen(app_conf):
 
         if app_conf.target_lang == 'ST':
             generator_sie_st.writeTyp(ctrl, sts ,prm)
-            generator_sie_st.writeFB(var_input,var_output,var_in_out,'dgrill')
-            generator_sie_st.writeDB(instances)
-            generator_sie_st.writeCall(instances,var_input,var_output,var_in_out)
+            generator_sie_st.writeFB(var_input,var_output,var_in_out,app_conf.author)
+            generator_sie_st.writeDB(instances,app_conf.author)
+            generator_sie_st.writeCall(instances,var_input,var_output,var_in_out,app_conf.author)
 
         elif  app_conf.target_lang == 'CPP':
             generator_sie_cpp.development()
 
+# Function for testing
 def code_gen_TEST():
 
-    parseExcel = Spreadsheet.Structure('/home/dgrill/Schreibtisch/Projects/00_CodeGenerator/data/Template_structure.xlsx')
+    parseExcel = Spreadsheet.Structure(os.path.dirname(os.path.realpath("__file__"))  + conf['Path_Excel'])
     ctrl = parseExcel.readCtrl()
     sts = parseExcel.readSTS()
     prm = parseExcel.readPRM()
@@ -70,14 +71,14 @@ def code_gen_TEST():
     instances = parseExcel.readInstances()
 
     # BuR
-    generator_bur_st = Generator_BuR.ST('/home/dgrill/Schreibtisch/Projects/00_CodeGenerator/data/',instances)
+    generator_bur_st = Generator_BuR.ST(os.path.dirname(os.path.realpath("__file__")) + conf['Path_Output_BuR'] ,instances)
     generator_bur_st.writeInstances(instances,var_input,var_output,var_in_out)
     generator_bur_st.writeTypes(ctrl, sts, prm)
     generator_bur_st.writeInterface(var_input,var_output,var_in_out)
     generator_bur_st.writeFB( var_input, var_output, var_in_out ,'dgrill','1.0')
 
     #SIE
-    generator_sie_st = Generator_SIE.ST('/home/dgrill/Schreibtisch/Projects/00_CodeGenerator/data/',instances)
+    generator_sie_st = Generator_SIE.ST(os.path.dirname(os.path.realpath("__file__")) + conf['Path_Output_SIE'],instances)
     generator_sie_st.writeTyp(ctrl, sts ,prm)
     generator_sie_st.writeFB(var_input,var_output,var_in_out,'dgrill','1.0')
     generator_sie_st.writeDB(instances)
@@ -150,7 +151,11 @@ def parse_args():
     return args
 
 if __name__ == '__main__':
-    app_conf = parse_args()
-    code_gen(app_conf)
-    #code_gen_TEST()
+
+    if conf['Mode'] == 'Debug':
+        code_gen_TEST()
+    else:
+        app_conf = parse_args()
+        code_gen(app_conf)
+
 

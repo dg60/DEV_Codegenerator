@@ -2,9 +2,9 @@ FUNCTION_BLOCK  FB_Std
 VAR_INPUT
 IN_Prm_0 : BOOL; (*Input Parameter 1*)
 IN_Prm_1 : BOOL; (*Input Parameter 2*)
-IN_Prm_2ö : BOOL; (*Input Parameter 3*)
+IN_Prm_2 : BOOL; (*Input Parameter 3*)
 IN_Prm_3 : BOOL; (*Input Parameter 4*)
-IN_Prm_4ä : BOOL; (*Input Parameter 5*)
+IN_Prm_4 : BOOL; (*Input Parameter 5*)
 END_VAR
 VAR_OUTPUT
 OUT_Prm_0 : BOOL; (*Output Parameter 1*)
