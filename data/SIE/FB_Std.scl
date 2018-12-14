@@ -29,7 +29,7 @@ VERSION : 1.0
 END_TYPE
 
 FUNCTION_BLOCK "FB_Std"
-{ S7_Optimized_Access := "TRUE" }
+{ S7_Optimized_Access := 'TRUE' }
 AUTHOR : dgrill
 Version : 1.0
 	VAR_INPUT
@@ -54,7 +54,7 @@ BEGIN
 // FB_Std
 // Author: dgrill
 // Version: 1.0
-// Date: 14.12.2018 20:18
+// Date: 14.12.2018 21:15
 // Description: 
 // 
 // Rev: 
@@ -65,7 +65,7 @@ BEGIN
 
 END_FUNCTION_BLOCK
 
-DATA_BLOCK "DB_FB_Std"{ S7_Optimized_Access := "TRUE" }
+DATA_BLOCK "DB_FB_Std"{ S7_Optimized_Access := 'TRUE' }
 AUTHOR : user
 Version : 1.0
 VAR
@@ -97,7 +97,7 @@ BEGIN
 END_DATA_BLOCK
 
 FUNCTION_BLOCK "Call_FB_Std"
-{ S7_Optimized_Access := "TRUE" }
+{ S7_Optimized_Access := 'TRUE' }
 AUTHOR : user
 Version : 1.0
 VAR
@@ -110,10 +110,10 @@ BEGIN
 // by dgrill
 // http://www.dgrill.at
 // dgrill@dgrill.at
-// Date of generation: 14.12.2018 20:18
+// Date of generation: 14.12.2018 21:15
 //***********************************************
 
-REGIONStandard FB FB1
+REGION Standard FB FB1
 
 #I_FB_Std[0](
 	IN_Prm_0 := "Prm0",
@@ -130,7 +130,7 @@ REGIONStandard FB FB1
 
 END_REGION
 
-REGIONStandard FB FB2
+REGION Standard FB FB2
 
 #I_FB_Std[1](
 	IN_Prm_0 := "Prm0",
@@ -147,7 +147,7 @@ REGIONStandard FB FB2
 
 END_REGION
 
-REGIONStandard FB FB3
+REGION Standard FB FB3
 
 #I_FB_Std[2](
 	IN_Prm_0 := "Prm0",
@@ -164,7 +164,7 @@ REGIONStandard FB FB3
 
 END_REGION
 
-REGIONStandard FB FB4
+REGION Standard FB FB4
 
 #I_FB_Std[3](
 	IN_Prm_0 := "Prm0",
@@ -181,7 +181,7 @@ REGIONStandard FB FB4
 
 END_REGION
 
-REGIONStandard FB FB5
+REGION Standard FB FB5
 
 #I_FB_Std[4](
 	IN_Prm_0 := "Prm0",
@@ -198,7 +198,7 @@ REGIONStandard FB FB5
 
 END_REGION
 
-REGIONStandard FB FB6
+REGION Standard FB FB6
 
 #I_FB_Std[5](
 	IN_Prm_0 := "Prm0",
@@ -215,7 +215,7 @@ REGIONStandard FB FB6
 
 END_REGION
 
-REGIONStandard FB FB7
+REGION Standard FB FB7
 
 #I_FB_Std[6](
 	IN_Prm_0 := "Prm0",
@@ -232,7 +232,7 @@ REGIONStandard FB FB7
 
 END_REGION
 
-REGIONStandard FB FB8
+REGION Standard FB FB8
 
 #I_FB_Std[7](
 	IN_Prm_0 := "Prm0",
@@ -249,7 +249,7 @@ REGIONStandard FB FB8
 
 END_REGION
 
-REGIONStandard FB FB9
+REGION Standard FB FB9
 
 #I_FB_Std[8](
 	IN_Prm_0 := "Prm0",
@@ -266,7 +266,7 @@ REGIONStandard FB FB9
 
 END_REGION
 
-REGIONStandard FB FB10
+REGION Standard FB FB10
 
 #I_FB_Std[9](
 	IN_Prm_0 := "Prm0",
@@ -283,7 +283,7 @@ REGIONStandard FB FB10
 
 END_REGION
 
-REGIONStandard FB FB11
+REGION Standard FB FB11
 
 #I_FB_Std[10](
 	IN_Prm_0 := "Prm0",
@@ -300,7 +300,7 @@ REGIONStandard FB FB11
 
 END_REGION
 
-REGIONStandard FB FB12
+REGION Standard FB FB12
 
 #I_FB_Std[11](
 	IN_Prm_0 := "Prm0",
@@ -317,7 +317,7 @@ REGIONStandard FB FB12
 
 END_REGION
 
-REGIONStandard FB FB13
+REGION Standard FB FB13
 
 #I_FB_Std[12](
 	IN_Prm_0 := "Prm0",
@@ -334,7 +334,7 @@ REGIONStandard FB FB13
 
 END_REGION
 
-REGIONStandard FB FB14
+REGION Standard FB FB14
 
 #I_FB_Std[13](
 	IN_Prm_0 := "Prm0",
@@ -351,7 +351,7 @@ REGIONStandard FB FB14
 
 END_REGION
 
-REGIONStandard FB FB15
+REGION Standard FB FB15
 
 #I_FB_Std[14](
 	IN_Prm_0 := "Prm0",
@@ -368,7 +368,7 @@ REGIONStandard FB FB15
 
 END_REGION
 
-REGIONStandard FB FB16
+REGION Standard FB FB16
 
 #I_FB_Std[15](
 	IN_Prm_0 := "Prm0",
@@ -385,7 +385,7 @@ REGIONStandard FB FB16
 
 END_REGION
 
-REGIONStandard FB FB17
+REGION Standard FB FB17
 
 #I_FB_Std[16](
 	IN_Prm_0 := "Prm0",
@@ -402,7 +402,7 @@ REGIONStandard FB FB17
 
 END_REGION
 
-REGIONStandard FB FB18
+REGION Standard FB FB18
 
 #I_FB_Std[17](
 	IN_Prm_0 := "Prm0",
@@ -419,7 +419,7 @@ REGIONStandard FB FB18
 
 END_REGION
 
-REGIONStandard FB FB19
+REGION Standard FB FB19
 
 #I_FB_Std[18](
 	IN_Prm_0 := "Prm0",
@@ -436,7 +436,7 @@ REGIONStandard FB FB19
 
 END_REGION
 
-REGIONStandard FB FB20
+REGION Standard FB FB20
 
 #I_FB_Std[19](
 	IN_Prm_0 := "Prm0",
@@ -453,7 +453,7 @@ REGIONStandard FB FB20
 
 END_REGION
 
-REGIONStandard FB FB21
+REGION Standard FB FB21
 
 #I_FB_Std[20](
 	IN_Prm_0 := "Prm0",
@@ -470,7 +470,7 @@ REGIONStandard FB FB21
 
 END_REGION
 
-REGIONStandard FB FB22
+REGION Standard FB FB22
 
 #I_FB_Std[21](
 	IN_Prm_0 := "Prm0",
@@ -487,5 +487,5 @@ REGIONStandard FB FB22
 
 END_REGION
 
-FUNCTION_BLOCK 
+END_FUNCTION_BLOCK
 
