@@ -1,14 +1,14 @@
 TYPE "FB_Std_CTRL"
 VERSION : 1.0
 	STRUCT
-		Dummy : Bool; //Dummy
+		Dummy : BOOL; //Dummy
 	END_STRUCT;
 END_TYPE
 
 TYPE "FB_Std_CTRL"
 VERSION : 1.0
 	STRUCT
-		Dummy : Bool; //Dummy
+		Dummy : BOOL; //Dummy
 	END_STRUCT;
 END_TYPE
 
@@ -54,7 +54,7 @@ BEGIN
 // FB_Std
 // Author: dgrill
 // Version: 1.0
-// Date: 14.12.2018 19:59
+// Date: 14.12.2018 20:18
 // Description: 
 // 
 // Rev: 
@@ -110,7 +110,7 @@ BEGIN
 // by dgrill
 // http://www.dgrill.at
 // dgrill@dgrill.at
-// Date of generation: 14.12.2018 19:59
+// Date of generation: 14.12.2018 20:18
 //***********************************************
 
 REGIONStandard FB FB1

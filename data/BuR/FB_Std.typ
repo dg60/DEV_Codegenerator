@@ -6,11 +6,11 @@ PRM : FB_Std_PRM;
 END_STRUCT;
 
 FB_Std_CTRL : STRUCT
-Dummy : Bool; (*Dummy*)
+Dummy : BOOL; (*Dummy*)
 END_STRUCT;
 
 FB_Std_STS : STRUCT
-Dummy : Bool; (*Dummy*)
+Dummy : BOOL; (*Dummy*)
 END_STRUCT;
 
 FB_Std_PRM : STRUCT

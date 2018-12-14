@@ -10,7 +10,10 @@ class ValidateData():
     plcTypes = (
         'BOOL',
         'BYTE',
+        'UINT',
+        'SINT',
         'INT',
+        'UDINT',
         'DINT',
         'WORD',
         'DWORD',
@@ -62,4 +65,14 @@ class ValidateData():
                 logging.warning('Name was too long in worksheet ' + modulname + ' Line ' + str((cnt + 2)) +
                                 ' | ' + names + ' was ' + str(len(names)) + ' characters long ' + '| Allowed max: ' + str(self.max_length_name))
 
+    def checkComment(self,name, modulname):
+
+        for cnt, names in enumerate(name):
+
+            if any(i in names for i in ValidateData.invalidCharacters):
+                logging.warning('Not allowed character ' + str(ValidateData.invalidCharacters) +  ' in worksheet ' + modulname + ' Line ' + str((cnt + 2)))
+
+            if len(names) > self.max_length_comment:
+                logging.warning('Name was too long in worksheet ' + modulname + ' Line ' + str((cnt + 2)) +
+                                ' | ' + names + ' was ' + str(len(names)) + ' characters long ' + '| Allowed max: ' + str(self.max_length_name))
 
