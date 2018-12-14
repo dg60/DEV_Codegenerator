@@ -17,7 +17,7 @@ conf = {
     'Author'  : 'dgrill',
     'URL'     : 'http://www.dgrill.at',
     'Email'   : 'dgrill@dgrill.at',
-    'Mode': 'Debug', # Set Value to 'Debug' for testing
+    'Mode': 'Production', # Set Value to 'Debug' for testing
     'Path_Excel': '/data/Template_structure.xlsx',
     'Path_Output_SIE': '/data/SIE',
     'Path_Output_BuR': '/data/BuR',
