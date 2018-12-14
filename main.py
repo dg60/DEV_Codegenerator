@@ -1,6 +1,7 @@
 from CodeGenerator.parser import Spreadsheet
 from CodeGenerator.generators import Generator_BuR
 from CodeGenerator.generators import Generator_SIE
+from CodeGenerator.conf.config import *
 import glob
 import os
 import json
@@ -9,15 +10,17 @@ import logging
 
 logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S',level=logging.WARNING)
 
-def code_gen(conf):
+def code_gen(app_conf):
 
-    print('DataDirectory: ',conf.data_directory);
-    print('Output_directory: ',conf.output_directory);
-    print('target_plc: ',conf.target_plc);
-    print('target_lang: ',conf.target_lang);
+    print('DataDirectory: ', app_conf.data_directory)
+    print('Output_directory: ', app_conf.output_directory)
+    print('target_plc: ', app_conf.target_plc)
+    print('target_lang: ', app_conf.target_lang)
+    print('author:', app_conf.author)
+
 
     #read the structure from the excel file
-    parseExcel = Spreadsheet.Structure(conf.data_directory)
+    parseExcel = Spreadsheet.Structure(app_conf.data_directory)
     ctrl = parseExcel.readCtrl()
     sts = parseExcel.readSTS()
     prm = parseExcel.readPRM()
@@ -27,32 +30,32 @@ def code_gen(conf):
     instances = parseExcel.readInstances()
 
     # Choose the wright generator
-    if conf.target_plc == 'BuR':
+    if app_conf.target_plc == 'BuR':
 
-        generator_bur_st = Generator_BuR.ST(conf.output_directory,instances)
-        generator_bur_cpp = Generator_BuR.CPP(conf.output_directory,instances)
+        generator_bur_st = Generator_BuR.ST(app_conf.output_directory, instances)
+        generator_bur_cpp = Generator_BuR.CPP(app_conf.output_directory, instances)
 
-        if conf.target_lang == 'ST':
+        if app_conf.target_lang == 'ST':
             generator_bur_st.writeInstances(instances,var_input,var_output,var_in_out)
             generator_bur_st.writeTypes(ctrl, sts, prm)
             generator_bur_st.writeInterface(var_input,var_output,var_in_out)
-            generator_bur_st.writeFB(var_input, var_output, var_in_out ,'dgrill','V1.0.0')
+            generator_bur_st.writeFB(var_input, var_output, var_in_out ,'dgrill')
 
-        elif  conf.target_lang == 'CPP':
+        elif  app_conf.target_lang == 'CPP':
             generator_bur_cpp.development()
 
-    elif conf.target_plc == 'Siemens':
+    elif app_conf.target_plc == 'Siemens':
 
-        generator_sie_st = Generator_SIE.ST(conf.output_directory, instances)
-        generator_sie_cpp = Generator_SIE.CPP(conf.output_directory)
+        generator_sie_st = Generator_SIE.ST(app_conf.output_directory, instances)
+        generator_sie_cpp = Generator_SIE.CPP(app_conf.output_directory)
 
-        if conf.target_lang == 'ST':
+        if app_conf.target_lang == 'ST':
             generator_sie_st.writeTyp(ctrl, sts ,prm)
-            generator_sie_st.writeFB(var_input,var_output,var_in_out,'dgrill','V1.0.0')
+            generator_sie_st.writeFB(var_input,var_output,var_in_out,'dgrill')
             generator_sie_st.writeDB(instances)
             generator_sie_st.writeCall(instances,var_input,var_output,var_in_out)
 
-        elif  conf.target_lang == 'CPP':
+        elif  app_conf.target_lang == 'CPP':
             generator_sie_cpp.development()
 
 def code_gen_TEST():
@@ -81,6 +84,8 @@ def code_gen_TEST():
     generator_sie_st.writeCall(instances,var_input,var_output,var_in_out)
 
 @Gooey(advanced=True,
+    required_cols=5,
+    optional_cols=2,
     show_config=True,
     default_size=(800,680),
     program_name="Code Generator",
@@ -101,7 +106,7 @@ def parse_args():
         with open(args_file) as data_file:
             stored_args = json.load(data_file)
 
-    parser = GooeyParser(description='V0.9.0 \n' + 'www.dgrill.at')
+    parser = GooeyParser(description= conf['Version'] + '\n' + 'www.dgrill.at')
 
     parser.add_argument('data_directory',
                         action='store',
@@ -133,6 +138,10 @@ def parse_args():
                         default=stored_args.get('target_ide'),
                         help="Choose the target IDE Version")
 
+    parser.add_argument('author',
+                        default=stored_args.get('author'),
+                        help="Set the author")
+
     args = parser.parse_args()
     # Store the values of the arguments so we have them next time we run
     with open(args_file, 'w') as data_file:
@@ -141,7 +150,7 @@ def parse_args():
     return args
 
 if __name__ == '__main__':
-    #conf = parse_args()
-    #code_gen(conf)
-    code_gen_TEST()
+    app_conf = parse_args()
+    code_gen(app_conf)
+    #code_gen_TEST()
 

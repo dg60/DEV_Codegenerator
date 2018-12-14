@@ -35,9 +35,9 @@ Version : 1.0
 	VAR_INPUT
 		IN_Prm_0 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Input Parameter 1
 		IN_Prm_1 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Input Parameter 2
-		IN_Prm_2 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Input Parameter 3
+		IN_Prm_2ö { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Input Parameter 3
 		IN_Prm_3 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Input Parameter 4
-		IN_Prm_4 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Input Parameter 5
+		IN_Prm_4ä { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Input Parameter 5
 	END_VAR
 	VAR_OUTPUT
 		OUT_Prm_0 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : 	BOOL; 	//Output Parameter 1
@@ -54,7 +54,7 @@ BEGIN
 // FB_Std
 // Author: dgrill
 // Version: 1.0
-// Date: 06.12.2018 23:06
+// Date: 14.12.2018 18:26
 // Description: 
 // 
 // Rev: 

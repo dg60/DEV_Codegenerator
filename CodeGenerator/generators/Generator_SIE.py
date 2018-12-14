@@ -20,7 +20,6 @@ class ST(bg.BaseGen):
         self.nl = '\r\n'
         self.destPath = destPath
         self.function_name = temp_func_name[1]
-        self.version = 'V0.9.0'
         self.s7_opt_access = '{ S7_Optimized_Access := "TRUE" }'
         self.var_options = "{ ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'}"
 
@@ -33,6 +32,19 @@ class ST(bg.BaseGen):
         f.write('\t' + syn.Scl['e_struct'] + self.nl)
         f.write(syn.Scl['e_type'] + self.nl)
         f.write(self.nl)
+
+    def _writeHeader(self,f):
+        now = datetime.now()
+
+        f.write('//***********************************************\n')
+        f.write('// Codegenerator Siemens ' + conf['Version'] + self.nl)
+        f.write('// by ' + conf['Author'] + self.nl)
+        f.write('// ' + conf['URL'] + self.nl)
+        f.write('// ' + conf['Email'] + self.nl)
+        f.write('// Date of generation: {0}\n'.format(str(now.strftime('%d.%m.%Y %H:%M'))))
+        f.write('//***********************************************\n')
+        f.write(self.nl)
+
 
 
     #typ(UDT)
@@ -82,7 +94,7 @@ class ST(bg.BaseGen):
             logging.error("Error openinng " + self.destPath + '/' + self.function_name + '.scl', exc_info=True)
 
     #FB
-    def writeFB(self, var_input, var_output, var_in_out, author='user', version='0.9' ):
+    def writeFB(self, var_input, var_output, var_in_out, author='user', version='1.0' ):
         now = datetime.now()
         lst_var_input_values = ST._readValues(self,var_input)
         lst_var_output_values = ST._readValues(self,var_output)
@@ -138,7 +150,7 @@ class ST(bg.BaseGen):
             logging.error("Error openinng " + self.destPath + '/' + self.function_name + '.scl',exc_info=True)
 
     #DB
-    def writeDB(self, instances, author='user', version='0.9'):
+    def writeDB(self, instances, author='user', version='1.0'):
         values = instances.values
         lstVar = []
 
@@ -170,7 +182,7 @@ class ST(bg.BaseGen):
             logging.error(self.destPath + '/' + self.function_name + '.scl',exc_info=True)
 
     #callFB
-    def writeCall(self,instances, var_input, var_output, var_in_out, author='user', version='0.9'):
+    def writeCall(self,instances, var_input, var_output, var_in_out, author='user', version='1.0'):
         values = instances.values
         keys = instances.keys()
         lstValues = []
@@ -197,6 +209,9 @@ class ST(bg.BaseGen):
                 f.write('I_' + self.function_name + ' ' + self.var_options + ': ' + 'Array[0..' + str(values.shape[0]) + '] of ' + '"' + self.function_name + '";' + self.nl )
                 f.write(syn.Scl['end_var'] + self.nl)
                 f.write('BEGIN' + self.nl * 2)
+
+                ST._writeHeader(self,f)
+
                 for cnt_,lstitems in enumerate(lstValues):
 
                     lst = lstitems

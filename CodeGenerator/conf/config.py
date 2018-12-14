@@ -13,11 +13,8 @@ CONST = {
 }
 
 conf = {
-    'Version' : 'V 0.4.0',
+    'Version' : 'V0.9.0',
     'Author'  : 'dgrill',
     'URL'     : 'http://www.dgrill.at',
     'Email'   : 'dgrill@dgrill.at',
-    'PATH_TO_STRUCTURE' : 'Structure.xlsx',
-    'Language' : CONST['ST'],
-    'PLC': CONST['BuR']
 }

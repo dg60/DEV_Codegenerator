@@ -20,15 +20,15 @@ class ST(bg.BaseGen):
         self.nl = '\n'
         self.destPath = destPath
         self.function_name = temp_func_name[1]
-        self.version = 'V0.9.0'
+        self.version = 'V1.0'
 
     def _writeHeader(self):
         now = datetime.now()
 
         try:
-            with open(self.destPath + self.function_name + '.st','wt') as f:
+            with open(self.destPath + '/' + self.function_name + '.st','wt') as f:
                 f.write('//***********************************************\n')
-                f.write('// Codegenerator BuR ' + self.version + self.nl)
+                f.write('// Codegenerator BuR ' + conf['Version'] + self.nl)
                 f.write('// by ' + conf['Author'] + self.nl)
                 f.write('// ' + conf['URL'] + self.nl)
                 f.write('// ' + conf['Email'] + self.nl)
@@ -167,7 +167,7 @@ class ST(bg.BaseGen):
             logging.error("Error openinng " + self.destPath + '/' + self.function_name + '.typ',exc_info=True)
 
     #fb_lib.st
-    def writeFB(self, var_input, var_output, var_in_out, author='user', version='V0.9.0' ):
+    def writeFB(self, var_input, var_output, var_in_out, author='user', version='V1.0' ):
         now = datetime.now()
         lst_var_input_values = ST._readValues(self,var_input)
         lst_var_output_values = ST._readValues(self,var_output)
