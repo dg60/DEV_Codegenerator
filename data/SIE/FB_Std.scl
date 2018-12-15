@@ -54,7 +54,7 @@ BEGIN
 // FB_Std
 // Author: dgrill
 // Version: 1.0
-// Date: 14.12.2018 21:15
+// Date: 15.12.2018 13:07
 // Description: 
 // 
 // Rev: 
@@ -79,18 +79,6 @@ VAR
 	"Object8" : "TYP_FB_Std"; // Standard FB
 	"Object9" : "TYP_FB_Std"; // Standard FB
 	"Object10" : "TYP_FB_Std"; // Standard FB
-	"Object11" : "TYP_FB_Std"; // Standard FB
-	"Object12" : "TYP_FB_Std"; // Standard FB
-	"Object13" : "TYP_FB_Std"; // Standard FB
-	"Object14" : "TYP_FB_Std"; // Standard FB
-	"Object15" : "TYP_FB_Std"; // Standard FB
-	"Object16" : "TYP_FB_Std"; // Standard FB
-	"Object17" : "TYP_FB_Std"; // Standard FB
-	"Object18" : "TYP_FB_Std"; // Standard FB
-	"Object19" : "TYP_FB_Std"; // Standard FB
-	"Object20" : "TYP_FB_Std"; // Standard FB
-	"Object21" : "TYP_FB_Std"; // Standard FB
-	"Object22" : "TYP_FB_Std"; // Standard FB
 END_VAR
 BEGIN
 
@@ -101,7 +89,7 @@ FUNCTION_BLOCK "Call_FB_Std"
 AUTHOR : user
 Version : 1.0
 VAR
-I_FB_Std { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'}: Array[0..22] of "FB_Std";
+I_FB_Std { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'}: Array[0..10] of "FB_Std";
 END_VAR
 BEGIN
 
@@ -110,7 +98,7 @@ BEGIN
 // by dgrill
 // http://www.dgrill.at
 // dgrill@dgrill.at
-// Date of generation: 14.12.2018 21:15
+// Date of generation: 15.12.2018 13:07
 //***********************************************
 
 REGION Standard FB FB1
@@ -280,210 +268,6 @@ REGION Standard FB FB10
 	OUT_Prm_3 => "Prm8",
 	OUT_Prm_4 => "Prm9",
 	Object_struct := "DB_FB_Std".Object10);
-
-END_REGION
-
-REGION Standard FB FB11
-
-#I_FB_Std[10](
-	IN_Prm_0 := "Prm0",
-	IN_Prm_1 := "Prm1",
-	IN_Prm_2 := "Prm2",
-	IN_Prm_3 := "Prm3",
-	IN_Prm_4 := "Prm4",
-	OUT_Prm_0 => "Prm5",
-	OUT_Prm_1 => "Prm6",
-	OUT_Prm_2 => "Prm7",
-	OUT_Prm_3 => "Prm8",
-	OUT_Prm_4 => "Prm9",
-	Object_struct := "DB_FB_Std".Object11);
-
-END_REGION
-
-REGION Standard FB FB12
-
-#I_FB_Std[11](
-	IN_Prm_0 := "Prm0",
-	IN_Prm_1 := "Prm1",
-	IN_Prm_2 := "Prm2",
-	IN_Prm_3 := "Prm3",
-	IN_Prm_4 := "Prm4",
-	OUT_Prm_0 => "Prm5",
-	OUT_Prm_1 => "Prm6",
-	OUT_Prm_2 => "Prm7",
-	OUT_Prm_3 => "Prm8",
-	OUT_Prm_4 => "Prm9",
-	Object_struct := "DB_FB_Std".Object12);
-
-END_REGION
-
-REGION Standard FB FB13
-
-#I_FB_Std[12](
-	IN_Prm_0 := "Prm0",
-	IN_Prm_1 := "Prm1",
-	IN_Prm_2 := "Prm2",
-	IN_Prm_3 := "Prm3",
-	IN_Prm_4 := "Prm4",
-	OUT_Prm_0 => "Prm5",
-	OUT_Prm_1 => "Prm6",
-	OUT_Prm_2 => "Prm7",
-	OUT_Prm_3 => "Prm8",
-	OUT_Prm_4 => "Prm9",
-	Object_struct := "DB_FB_Std".Object13);
-
-END_REGION
-
-REGION Standard FB FB14
-
-#I_FB_Std[13](
-	IN_Prm_0 := "Prm0",
-	IN_Prm_1 := "Prm1",
-	IN_Prm_2 := "Prm2",
-	IN_Prm_3 := "Prm3",
-	IN_Prm_4 := "Prm4",
-	OUT_Prm_0 => "Prm5",
-	OUT_Prm_1 => "Prm6",
-	OUT_Prm_2 => "Prm7",
-	OUT_Prm_3 => "Prm8",
-	OUT_Prm_4 => "Prm9",
-	Object_struct := "DB_FB_Std".Object14);
-
-END_REGION
-
-REGION Standard FB FB15
-
-#I_FB_Std[14](
-	IN_Prm_0 := "Prm0",
-	IN_Prm_1 := "Prm1",
-	IN_Prm_2 := "Prm2",
-	IN_Prm_3 := "Prm3",
-	IN_Prm_4 := "Prm4",
-	OUT_Prm_0 => "Prm5",
-	OUT_Prm_1 => "Prm6",
-	OUT_Prm_2 => "Prm7",
-	OUT_Prm_3 => "Prm8",
-	OUT_Prm_4 => "Prm9",
-	Object_struct := "DB_FB_Std".Object15);
-
-END_REGION
-
-REGION Standard FB FB16
-
-#I_FB_Std[15](
-	IN_Prm_0 := "Prm0",
-	IN_Prm_1 := "Prm1",
-	IN_Prm_2 := "Prm2",
-	IN_Prm_3 := "Prm3",
-	IN_Prm_4 := "Prm4",
-	OUT_Prm_0 => "Prm5",
-	OUT_Prm_1 => "Prm6",
-	OUT_Prm_2 => "Prm7",
-	OUT_Prm_3 => "Prm8",
-	OUT_Prm_4 => "Prm9",
-	Object_struct := "DB_FB_Std".Object16);
-
-END_REGION
-
-REGION Standard FB FB17
-
-#I_FB_Std[16](
-	IN_Prm_0 := "Prm0",
-	IN_Prm_1 := "Prm1",
-	IN_Prm_2 := "Prm2",
-	IN_Prm_3 := "Prm3",
-	IN_Prm_4 := "Prm4",
-	OUT_Prm_0 => "Prm5",
-	OUT_Prm_1 => "Prm6",
-	OUT_Prm_2 => "Prm7",
-	OUT_Prm_3 => "Prm8",
-	OUT_Prm_4 => "Prm9",
-	Object_struct := "DB_FB_Std".Object17);
-
-END_REGION
-
-REGION Standard FB FB18
-
-#I_FB_Std[17](
-	IN_Prm_0 := "Prm0",
-	IN_Prm_1 := "Prm1",
-	IN_Prm_2 := "Prm2",
-	IN_Prm_3 := "Prm3",
-	IN_Prm_4 := "Prm4",
-	OUT_Prm_0 => "Prm5",
-	OUT_Prm_1 => "Prm6",
-	OUT_Prm_2 => "Prm7",
-	OUT_Prm_3 => "Prm8",
-	OUT_Prm_4 => "Prm9",
-	Object_struct := "DB_FB_Std".Object18);
-
-END_REGION
-
-REGION Standard FB FB19
-
-#I_FB_Std[18](
-	IN_Prm_0 := "Prm0",
-	IN_Prm_1 := "Prm1",
-	IN_Prm_2 := "Prm2",
-	IN_Prm_3 := "Prm3",
-	IN_Prm_4 := "Prm4",
-	OUT_Prm_0 => "Prm5",
-	OUT_Prm_1 => "Prm6",
-	OUT_Prm_2 => "Prm7",
-	OUT_Prm_3 => "Prm8",
-	OUT_Prm_4 => "Prm9",
-	Object_struct := "DB_FB_Std".Object19);
-
-END_REGION
-
-REGION Standard FB FB20
-
-#I_FB_Std[19](
-	IN_Prm_0 := "Prm0",
-	IN_Prm_1 := "Prm1",
-	IN_Prm_2 := "Prm2",
-	IN_Prm_3 := "Prm3",
-	IN_Prm_4 := "Prm4",
-	OUT_Prm_0 => "Prm5",
-	OUT_Prm_1 => "Prm6",
-	OUT_Prm_2 => "Prm7",
-	OUT_Prm_3 => "Prm8",
-	OUT_Prm_4 => "Prm9",
-	Object_struct := "DB_FB_Std".Object20);
-
-END_REGION
-
-REGION Standard FB FB21
-
-#I_FB_Std[20](
-	IN_Prm_0 := "Prm0",
-	IN_Prm_1 := "Prm1",
-	IN_Prm_2 := "Prm2",
-	IN_Prm_3 := "Prm3",
-	IN_Prm_4 := "Prm4",
-	OUT_Prm_0 => "Prm5",
-	OUT_Prm_1 => "Prm6",
-	OUT_Prm_2 => "Prm7",
-	OUT_Prm_3 => "Prm8",
-	OUT_Prm_4 => "Prm9",
-	Object_struct := "DB_FB_Std".Object21);
-
-END_REGION
-
-REGION Standard FB FB22
-
-#I_FB_Std[21](
-	IN_Prm_0 := "Prm0",
-	IN_Prm_1 := "Prm1",
-	IN_Prm_2 := "Prm2",
-	IN_Prm_3 := "Prm3",
-	IN_Prm_4 := "Prm4",
-	OUT_Prm_0 => "Prm5",
-	OUT_Prm_1 => "Prm6",
-	OUT_Prm_2 => "Prm7",
-	OUT_Prm_3 => "Prm8",
-	OUT_Prm_4 => "Prm9",
-	Object_struct := "DB_FB_Std".Object22);
 
 END_REGION
 
