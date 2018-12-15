@@ -1,6 +1,5 @@
-# Codegenerator for PLC´s
+# Codegenerator for PLC´s (BETA)
 
-In Development
 
 ## GUI Interface
 
@@ -22,21 +21,30 @@ In Development
 
 ### Install for Development
 
-* Install Python runtime
+* Install Python 3 runtime (>= V3.6.6)
   * Windows [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
   * Linux [https://docs.python-guide.org/starting/install3/linux/](https://docs.python-guide.org/starting/install3/linux/)
   
-* Install development dependencies 
+**Install development dependencies**
+1. cd to the directory where requirements.txt is located
+2. activate your virtualenv
+3. run
 ```bash
-$ pip install setup.py
+$ pip install -r requirements.txt
 ```
 
 ### Build from Source
 
-* Install pyinstaller [https://www.pyinstaller.org/](https://www.pyinstaller.org/)
+1. Install pyinstaller [https://www.pyinstaller.org/](https://www.pyinstaller.org/)
+2. in your shell run
 ```bash
 $ pyinstaller build.spec
 ```
+
+## Documentation
+
+German:  
+[CodeGenerator German Documentation](http://www.dgrill.at/portfolio/05-CodeGenerator/)
 
 
 
