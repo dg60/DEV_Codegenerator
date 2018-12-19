@@ -1,7 +1,7 @@
 """
 Generator for Siemens PLC
 Author: dgrill
-Date: 24 Nov 2018
+Date: 19 Dez 2018
 """
 from CodeGenerator.conf.config import *
 from datetime import datetime
@@ -23,8 +23,15 @@ class ST(bg.BaseGen):
         self.s7_opt_access = "{ S7_Optimized_Access := 'TRUE' }"
         self.var_options = "{ ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'}"
 
-    def _writeTypStart(self,f):
-        f.write(syn.Scl['s_type'] + '"' + self.function_name + '_CTRL' + '"' + self.nl)
+    def _writeTypStart(self,f,struct):
+
+        if struct == 'CTRL':
+            f.write(syn.Scl['s_type'] + '"' + self.function_name + '_CTRL' + '"' + self.nl)
+        elif struct == 'STS':
+            f.write(syn.Scl['s_type'] + '"' + self.function_name + '_STS' + '"' + self.nl)
+        elif struct == 'PRM':
+            f.write(syn.Scl['s_type'] + '"' + self.function_name + '_PRM' + '"' + self.nl)
+
         f.write('VERSION' + syn.Scl[':'] + '1.0' + self.nl)
         f.write('\t' + syn.Scl['s_struct'] + self.nl)
 
@@ -57,21 +64,21 @@ class ST(bg.BaseGen):
             with open(self.destPath + '/' + self.function_name + '.scl', 'wt') as f:
 
                 # Generate ctrl type
-                ST._writeTypStart(self, f)
+                ST._writeTypStart(self, f,'CTRL')
                 for lstitems in lst_ctrl_values:
                     lst_ctrl = lstitems
                     f.write('\t' + '\t' + lst_ctrl[0] + syn.Scl[':'] + lst_ctrl[1] + syn.Scl[';'] + syn.Scl['comment'] + lst_ctrl[2] + self.nl)
                 ST._writeTypEnd(self, f)
 
                 # Generate sts type
-                ST._writeTypStart(self, f)
+                ST._writeTypStart(self, f,'STS')
                 for lstitems in lst_sts_values:
                     lst_sts = lstitems
                     f.write('\t' + '\t' + lst_sts[0] + syn.Scl[':'] + lst_sts[1] + syn.Scl[';'] + syn.Scl['comment'] + lst_sts[2] + self.nl)
                 ST._writeTypEnd(self, f)
 
                 # Generate prm type
-                ST._writeTypStart(self, f)
+                ST._writeTypStart(self, f,'PRM')
                 for lstitems in lst_prm_values:
                     lst_prm = lstitems
                     f.write('\t' + '\t' + lst_prm[0] + syn.Scl[':'] + lst_prm[1] + syn.Scl[';'] + syn.Scl['comment'] + lst_prm[2] + self.nl)

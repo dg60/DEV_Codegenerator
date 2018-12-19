@@ -5,14 +5,14 @@ VERSION : 1.0
 	END_STRUCT;
 END_TYPE
 
-TYPE "FB_Std_CTRL"
+TYPE "FB_Std_STS"
 VERSION : 1.0
 	STRUCT
 		Dummy : BOOL; //Dummy
 	END_STRUCT;
 END_TYPE
 
-TYPE "FB_Std_CTRL"
+TYPE "FB_Std_PRM"
 VERSION : 1.0
 	STRUCT
 		Dummy : REAL; //Dummy
@@ -54,7 +54,7 @@ BEGIN
 // FB_Std
 // Author: dgrill
 // Version: 1.0
-// Date: 15.12.2018 13:07
+// Date: 19.12.2018 17:59
 // Description: 
 // 
 // Rev: 
@@ -94,11 +94,11 @@ END_VAR
 BEGIN
 
 //***********************************************
-// Codegenerator Siemens V0.9.0
+// Codegenerator Siemens V0.9.1
 // by dgrill
 // http://www.dgrill.at
 // dgrill@dgrill.at
-// Date of generation: 15.12.2018 13:07
+// Date of generation: 19.12.2018 17:59
 //***********************************************
 
 REGION Standard FB FB1

@@ -13,7 +13,7 @@ CONST = {
 }
 
 conf = {
-    'Version' : 'V0.9.0',
+    'Version' : 'V0.9.1',
     'Author'  : 'dgrill',
     'URL'     : 'http://www.dgrill.at',
     'Email'   : 'dgrill@dgrill.at',
